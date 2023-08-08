@@ -7,15 +7,15 @@
   <title>SINDIKA - @yield('title')</title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/all.min.css') }}">
 
   <!-- CSS Libraries -->
   @stack('css')
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/components.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/components.css') }}">
 </head>
 
 <body>
@@ -45,23 +45,23 @@
       </nav>
 
       <x-sidebar :links="[
-          'Master' => [
-              ['url' => '#', 'icon' => 'far fa-square', 'name' => 'Satuan'],
-              ['url' => '#', 'icon' => 'far fa-square', 'name' => 'Jenis'],
-              ['url' => '#', 'icon' => 'far fa-square', 'name' => 'Kategori'],
-              ['url' => '#', 'icon' => 'far fa-square', 'name' => 'Obat'],
-              ['url' => '#', 'icon' => 'far fa-square', 'name' => 'Supplier'],
+          'Master Obat' => [
+              ['url' => '#', 'icon' => 'square', 'name' => 'Satuan'],
+              ['url' => '#', 'icon' => 'th-large', 'name' => 'Jenis'],
+              ['url' => '#', 'icon' => 'th', 'name' => 'Kategori'],
+              ['url' => '#', 'icon' => 'pills', 'name' => 'Obat'],
+              ['url' => '#', 'icon' => 'hand-holding-heart', 'name' => 'Supplier'],
           ],
       
           'Perhitungan' => [
-              ['url' => '#', 'icon' => 'far fa-square', 'name' => 'WMA'],
-              ['url' => '#', 'icon' => 'far fa-square', 'name' => 'EOQ'],
+              ['url' => '#', 'icon' => 'square-root-alt', 'name' => 'WMA'],
+              ['url' => '#', 'icon' => 'square-root-alt', 'name' => 'EOQ'],
           ],
       
           'Laporan' => [
-              ['url' => '#', 'icon' => 'far fa-square', 'name' => 'Obat'],
-              ['url' => '#', 'icon' => 'far fa-square', 'name' => 'Peramalan'],
-              ['url' => '#', 'icon' => 'far fa-square', 'name' => 'EOQ'],
+              ['url' => '#', 'icon' => 'pills', 'name' => 'Obat'],
+              ['url' => '#', 'icon' => 'file-alt', 'name' => 'Peramalan'],
+              ['url' => '#', 'icon' => 'square-root-alt', 'name' => 'EOQ'],
           ],
       ]" />
 
@@ -71,11 +71,7 @@
           <div class="section-header">
             <h1>@yield('title')</h1>
 
-            <x-breadcrumb :breadcrumbs="[
-                'Dashboard' => '/dashboard',
-                'Layout' => '#',
-                'Default Layout' => '',
-            ]" />
+            <x-breadcrumb :$breadcrumbs />
           </div>
 
           @if (session('error'))
@@ -107,8 +103,7 @@
 
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval
-            Azhar</a>
+          Copyright &copy; {{ config('app.name') }} {{ date('Y') }}
         </div>
         <div class="footer-right">
           @yield('footer')
@@ -118,21 +113,21 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="{{ asset('js/jquery.min.js') }}"></script>
-  <script src="{{ asset('js/popper.js') }}"></script>
-  <script src="{{ asset('js/tooltip.js') }}"></script>
-  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('js/jquery.nicescroll.min.js') }}"></script>
-  <script src="{{ asset('js/moment.min.js') }}"></script>
-  <script src="{{ asset('js/stisla.js') }}"></script>
+  <script src="{{ asset('/js/jquery.min.js') }}"></script>
+  <script src="{{ asset('/js/popper.js') }}"></script>
+  <script src="{{ asset('/js/tooltip.js') }}"></script>
+  <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('/js/jquery.nicescroll.min.js') }}"></script>
+  <script src="{{ asset('/js/moment.min.js') }}"></script>
+  <script src="{{ asset('/js/stisla.js') }}"></script>
 
   <!-- JS Libraries -->
   <!-- Page Specific JS File -->
   @stack('js')
 
   <!-- Template JS File -->
-  <script src="{{ asset('js/scripts.js') }}"></script>
-  <script src="{{ asset('js/custom.js') }}"></script>
+  <script src="{{ asset('/js/scripts.js') }}"></script>
+  <script src="{{ asset('/js/custom.js') }}"></script>
 </body>
 
 </html>
