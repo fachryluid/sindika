@@ -45,23 +45,23 @@
       </nav>
 
       <x-sidebar :links="[
-          'Master Obat' => [
-              ['url' => '#', 'icon' => 'square', 'name' => 'Satuan'],
-              ['url' => '#', 'icon' => 'th-large', 'name' => 'Jenis'],
-              ['url' => '#', 'icon' => 'th', 'name' => 'Kategori'],
-              ['url' => '#', 'icon' => 'pills', 'name' => 'Obat'],
-              ['url' => '#', 'icon' => 'hand-holding-heart', 'name' => 'Supplier'],
+          'Master' => [
+              'Satuan' => ['url' => route('master.unit.index'), 'icon' => 'square'],
+              'Jenis' => ['url' => '#', 'icon' => 'th-large'],
+              'Kategori' => ['url' => '#', 'icon' => 'th'],
+              'Obat' => ['url' => '#', 'icon' => 'pills'],
+              'Supplier' => ['url' => '#', 'icon' => 'hand-holding-heart'],
           ],
       
           'Perhitungan' => [
-              ['url' => '#', 'icon' => 'square-root-alt', 'name' => 'WMA'],
-              ['url' => '#', 'icon' => 'square-root-alt', 'name' => 'EOQ'],
+              'WMA' => ['url' => '#', 'icon' => 'square-root-alt'],
+              'EOQ' => ['url' => '#', 'icon' => 'square-root-alt'],
           ],
       
           'Laporan' => [
-              ['url' => '#', 'icon' => 'pills', 'name' => 'Obat'],
-              ['url' => '#', 'icon' => 'file-alt', 'name' => 'Peramalan'],
-              ['url' => '#', 'icon' => 'square-root-alt', 'name' => 'EOQ'],
+              'Obat' => ['url' => '#', 'icon' => 'pills'],
+              'Peramalan' => ['url' => '#', 'icon' => 'file-alt'],
+              'EOQ' => ['url' => '#', 'icon' => 'square-root-alt'],
           ],
       ]" />
 

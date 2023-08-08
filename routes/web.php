@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UnitController;
+use App\Models\Unit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +25,8 @@ Route::get('/login', function () {
 
 Route::get('/dashboard', function () {
   return view('dashboard.index');
+})->name('dashboard.index');
+
+Route::prefix('master')->name('master.')->group(function () {
+  Route::resource('/unit', UnitController::class)->except(['store', 'edit', 'update', 'destroy'])->names('unit');
 });
