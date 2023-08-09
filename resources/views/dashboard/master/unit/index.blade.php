@@ -8,32 +8,12 @@
 
 @section('title', 'Satuan')
 
-@push('css')
-  <link rel="stylesheet" href="{{ asset('/css/datatables.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/dataTables.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/select.bootstrap4.min.css') }}">
-@endpush
-
 @section('main')
-  <div class="card">
-    <div class="card-header">
-      <a href="{{ route('master.unit.create') }}" class="btn btn-primary note-btn">
-        <i class="fa fa-plus"></i>
-        Tambah
-      </a>
-    </div>
-    <div class="card-body">
-      <x-datatable id="satuan" :columns="['Nama Satuan']">
-        @foreach ($units as $unit)
-          <tr>
-            <td class="text-center">{{ $loop->iteration }}</td>
-            <td>{{ $unit->name }}</td>
-            <td>
-              <a href="{{ route('master.unit.show', $unit->id) }}" class="btn btn-success">Detail</a>
-            </td>
-          </tr>
-        @endforeach
-      </x-datatable>
-    </div>
-  </div>
+  <x-card-table id="unit" :create-route="route('master.unit.create')" :columns="['Nama Satuan']">
+    @foreach ($units as $unit)
+      <x-tr :$loop :detail-route="route('master.unit.show', $unit->id)" :delete-route="''">
+        <td>{{ $unit->name }}</td>
+      </x-tr>
+    @endforeach
+  </x-card-table>
 @endsection

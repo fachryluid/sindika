@@ -4,14 +4,14 @@
        ![Login](design/ui/LOGIN_SINDIKA.png "Login")
 2. [x] **Dashboard**
        ![Dashboard](design/ui/DASHBOARD.png "Dashboard")
-3. [ ] **Data Jenis**
-       ![Data Jenis](design/ui/DATA_JENIS.png "Data Jenis")
-4. [ ] **Data Kategori**
-       ![Data Kategori](design/ui/DATA_KATEGORI.png "Data Kategori")
-5. [ ] **Data Obat**
-       ![Data Obat](design/ui/DATA_OBAT.png "Data Obat")
-6. [ ] **Data Satuan**
+3. [x] **Data Satuan**
        ![Data Satuan](design/ui/DATA_SATUAN.png "Data Satuan")
+4. [ ] **Data Jenis**
+       ![Data Jenis](design/ui/DATA_JENIS.png "Data Jenis")
+5. [ ] **Data Kategori**
+       ![Data Kategori](design/ui/DATA_KATEGORI.png "Data Kategori")
+6. [ ] **Data Obat**
+       ![Data Obat](design/ui/DATA_OBAT.png "Data Obat")
 7. [ ] **Data Supplier**
        ![Data Supplier](design/ui/DATA_SUPPLIER.png "Data Supplier")
 8. [ ] **WMA**

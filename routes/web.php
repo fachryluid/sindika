@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UnitController;
 use App\Models\Unit;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +34,8 @@ Route::get('/dashboard', function () {
 
 Route::prefix('master')->name('master.')->group(function () {
   Route::resource('/unit', UnitController::class)->except(['store', 'edit', 'update', 'destroy'])->names('unit');
+  Route::resource('/type', TypeController::class)->except(['store', 'edit', 'update', 'destroy'])->names('type');
+  Route::resource('/category', CategoryController::class)->except(['store', 'edit', 'update', 'destroy'])->names('category');
+  Route::resource('/medicine', MedicineController::class)->except(['store', 'edit', 'update'])->names('medicine');
+  Route::resource('/supplier', SupplierController::class)->except(['store', 'edit', 'update', 'destroy'])->names('supplier');
 });

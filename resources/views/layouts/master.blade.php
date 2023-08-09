@@ -47,10 +47,10 @@
       <x-sidebar :links="[
           'Master' => [
               'Satuan' => ['url' => route('master.unit.index'), 'icon' => 'square'],
-              'Jenis' => ['url' => '#', 'icon' => 'th-large'],
-              'Kategori' => ['url' => '#', 'icon' => 'th'],
-              'Obat' => ['url' => '#', 'icon' => 'pills'],
-              'Supplier' => ['url' => '#', 'icon' => 'hand-holding-heart'],
+              'Jenis' => ['url' => route('master.type.index'), 'icon' => 'th-large'],
+              'Kategori' => ['url' => route('master.category.index'), 'icon' => 'th'],
+              'Obat' => ['url' => route('master.medicine.index'), 'icon' => 'pills'],
+              'Supplier' => ['url' => route('master.supplier.index'), 'icon' => 'hand-holding-heart'],
           ],
       
           'Perhitungan' => [

@@ -17,6 +17,12 @@
   </table>
 </div>
 
+@push('css')
+  <link rel="stylesheet" href="{{ asset('/css/datatables.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/select.bootstrap4.min.css') }}">
+@endpush
+
 @push('js')
   <script src="{{ asset('/js/datatables.min.js') }}"></script>
   <script src="{{ asset('/js/dataTables.bootstrap4.min.js') }}"></script>
