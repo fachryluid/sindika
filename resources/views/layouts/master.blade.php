@@ -54,7 +54,7 @@
           ],
       
           'Perhitungan' => [
-              'WMA' => ['url' => '#', 'icon' => 'square-root-alt'],
+              'WMA' => ['url' => route('calculation.wma'), 'icon' => 'square-root-alt'],
               'EOQ' => ['url' => route('calculation.eoq'), 'icon' => 'square-root-alt'],
           ],
       
