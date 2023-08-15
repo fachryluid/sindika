@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalculationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\SupplierController;
@@ -38,4 +39,9 @@ Route::prefix('master')->name('master.')->group(function () {
   Route::resource('/category', CategoryController::class)->except(['store', 'edit', 'update', 'destroy'])->names('category');
   Route::resource('/medicine', MedicineController::class)->except(['store', 'edit', 'update'])->names('medicine');
   Route::resource('/supplier', SupplierController::class)->except(['store', 'edit', 'update', 'destroy'])->names('supplier');
+});
+
+Route::prefix('calculation')->name('calculation.')->group(function () {
+  Route::get('/eoq', [CalculationController::class, 'eoq'])->name('eoq');
+  Route::get('/wma', [CalculationController::class, 'wma'])->name('wma');
 });
