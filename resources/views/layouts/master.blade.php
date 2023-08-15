@@ -74,9 +74,13 @@
             <x-breadcrumb :$breadcrumbs />
           </div>
 
-          @if (session('error'))
+          @if($errors->any())
             <x-alert type="danger">
-              {{ session('error') }}
+              <ul class="m-0 px-3">
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
             </x-alert>
           @endif
           @if (session('success'))
@@ -111,6 +115,8 @@
       </footer>
     </div>
   </div>
+
+  @yield('modal')
 
   <!-- General JS Scripts -->
   <script src="{{ asset('/js/jquery.min.js') }}"></script>

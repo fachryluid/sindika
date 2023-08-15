@@ -1,6 +1,6 @@
-@props(['route'])
+@props(['action'])
 
-<a href="{{ $route }}" class="btn btn-primary note-btn">
-  <i class="fa fa-plus"></i>
-  Tambah
+<a href="{{ $action->url }}" class="btn btn-{{ $action->color }} note-btn mr-2">
+  <i class="{{ $action->icon }}"></i>
+  {{ $action->text }}
 </a>

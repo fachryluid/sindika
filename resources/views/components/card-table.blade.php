@@ -1,8 +1,15 @@
-@props(['id', 'create-route', 'columns'])
+@props(['id', 'columns', 'actions'])
 
 <div class="card">
   <div class="card-header">
-    <x-create-button :route="$createRoute" />
+    @foreach ($actions as $action)
+      @if ($action->type == 'link')
+        <x-create-button :action="$action" />
+      @endif
+      @if ($action->type == 'modal')
+        <x-modal-button :action="$action" />
+      @endif
+    @endforeach
   </div>
   <div class="card-body">
     <x-datatable :$id :$columns>

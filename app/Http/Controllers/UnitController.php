@@ -13,21 +13,7 @@ class UnitController extends Controller
    */
   public function index()
   {
-    // dummy data, use actual `Unit` model instead
-    $units = collect([
-      (object) [
-        "id" => 1,
-        "name" => "Strip"
-      ],
-      (object) [
-        "id" => 2,
-        "name" => "Box"
-      ],
-      (object) [
-        "id" => 3,
-        "name" => "Botol"
-      ],
-    ]);
+    $units = Unit::all();
 
     return view('dashboard.master.unit.index', compact('units'));
   }
@@ -45,7 +31,13 @@ class UnitController extends Controller
    */
   public function store(StoreUnitRequest $request)
   {
-    //
+    try {
+      Unit::create($request->all());
+      return redirect()->route('master.unit.index')->with('success', 'Data berhasil disimpan!');
+    } catch (\Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat menyimpan data!', $th->getMessage()]]);
+    }
   }
 
   /**
