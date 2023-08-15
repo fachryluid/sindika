@@ -9,7 +9,8 @@
 @section('title', 'Satuan')
 
 @section('main')
-  <x-card-table id="unit" :create-route="route('master.unit.create')" :columns="['Nama Satuan']">
+  <x-card-table id="unit" :columns="['Nama Satuan']" modal-title="Tambah Satuan Obat"
+    input-placeholder="Masukkan nama satuan obat">
     @foreach ($units as $unit)
       <x-tr :$loop :detail-route="route('master.unit.show', $unit->id)" :delete-route="''">
         <td>{{ $unit->name }}</td>

@@ -1,6 +1,6 @@
-@props(['route'])
+@props(['id'])
 
-<a href="{{ $route }}" class="btn btn-primary note-btn">
+<x-modal-trigger :$id>
   <i class="fa fa-plus"></i>
   Tambah
-</a>
+</x-modal-trigger>

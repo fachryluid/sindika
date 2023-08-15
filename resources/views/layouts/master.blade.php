@@ -112,6 +112,8 @@
     </div>
   </div>
 
+  @stack('modal')
+
   <!-- General JS Scripts -->
   <script src="{{ asset('/js/jquery.min.js') }}"></script>
   <script src="{{ asset('/js/popper.js') }}"></script>

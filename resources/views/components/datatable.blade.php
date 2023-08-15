@@ -17,18 +17,20 @@
   </table>
 </div>
 
-@push('css')
+@pushonce('css')
   <link rel="stylesheet" href="{{ asset('/css/datatables.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/select.bootstrap4.min.css') }}">
-@endpush
+@endpushonce
 
-@push('js')
+@pushonce('js')
   <script src="{{ asset('/js/datatables.min.js') }}"></script>
   <script src="{{ asset('/js/dataTables.bootstrap4.min.js') }}"></script>
   <script src="{{ asset('/js/dataTables.select.min.js') }}"></script>
   <script src="{{ asset('/js/jquery-ui.min.js') }}"></script>
+@endpushonce
 
+@push('js')
   <script>
     $("#table-{{ $id }}")
       .dataTable(
