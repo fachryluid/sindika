@@ -74,7 +74,7 @@
             <x-breadcrumb :$breadcrumbs />
           </div>
 
-          @if($errors->any())
+          @if ($errors->any())
             <x-alert type="danger">
               <ul class="m-0 px-3">
                 @foreach ($errors->all() as $error)
@@ -116,7 +116,7 @@
     </div>
   </div>
 
-  @yield('modal')
+  @stack('modal')
 
   <!-- General JS Scripts -->
   <script src="{{ asset('/js/jquery.min.js') }}"></script>
