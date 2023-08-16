@@ -9,13 +9,13 @@
 @section('title', 'Supplier')
 
 @section('main')
-  <x-card-table id="supplier" :create-route="route('master.supplier.create')" :columns="['Nama Supplier', 'Alamat', 'No. Hp']">
+  <x-card.table id="supplier" :create-route="route('master.supplier.create')" :columns="['Nama Supplier', 'Alamat', 'No. Hp']">
     @foreach ($suppliers as $supplier)
-      <x-tr :$loop :detail-route="route('master.supplier.show', $supplier->id)" :delete-route="''">
+      <x-table.row :$loop :detail-route="route('master.supplier.show', $supplier->id)" :delete-route="''">
         <td>{{ $supplier->name }}</td>
         <td>{{ $supplier->address }}</td>
         <td>{{ $supplier->phone }}</td>
-      </x-tr>
+      </x-table.row>
     @endforeach
-  </x-card-table>
+  </x-card.table>
 @endsection

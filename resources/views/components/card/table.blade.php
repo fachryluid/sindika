@@ -2,19 +2,19 @@
 
 <div class="card">
   <div class="card-header">
-    <x-create-button :$id :type="$createButtonType" :route="$createRoute" />
+    <x-button.create :$id :type="$createButtonType" :route="$createRoute" />
 
     {{ $actions ?? '' }}
   </div>
   <div class="card-body">
-    <x-datatable :$id :$columns>
+    <x-table.datatable :$id :$columns>
       {{ $slot }}
-    </x-datatable>
+    </x-table.datatable>
   </div>
 </div>
 
 @if ($createButtonType === 'modal')
-  <x-modal :$id :title="$modalTitle" no-footer>
+  <x-modal.index :$id :title="$modalTitle" no-footer>
     <form action="{{ $createRoute }}" method="POST">
       @csrf
       {{ $createForm ?? '' }}
@@ -24,5 +24,5 @@
         <button type="submit" class="btn btn-primary">Simpan</button>
       </div>
     </form>
-  </x-modal>
+  </x-modal.index>
 @endif

@@ -37,7 +37,7 @@ Route::prefix('master')->name('master.')->group(function () {
   Route::resource('/unit', UnitController::class)->except(['create', 'edit', 'update', 'destroy'])->names('unit');
   Route::resource('/type', TypeController::class)->except(['create', 'edit', 'update', 'destroy'])->names('type');
   Route::resource('/category', CategoryController::class)->except(['create', 'edit', 'update', 'destroy'])->names('category');
-  Route::resource('/medicine', MedicineController::class)->except(['store', 'edit', 'update'])->names('medicine');
+  Route::resource('/medicine', MedicineController::class)->except(['edit', 'update'])->names('medicine');
   Route::resource('/supplier', SupplierController::class)->except(['store', 'edit', 'update', 'destroy'])->names('supplier');
 });
 

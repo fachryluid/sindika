@@ -9,16 +9,16 @@
 @section('title', 'Obat')
 
 @section('main')
-  <x-card-table id="medicine" :create-route="route('master.medicine.create')" :columns="['Nama', 'Kategori', 'Jenis', 'Satuan', 'Stok', 'ED']">
+  <x-card.table id="medicine" :columns="['Nama', 'Kategori', 'Jenis', 'Satuan', 'Stok', 'ED']" create-button-type="link" :create-route="route('master.medicine.create')">
     @foreach ($medicines as $medicine)
-      <x-tr :$loop :detail-route="route('master.medicine.show', $medicine->id)" :delete-route="route('master.medicine.destroy', $medicine->id)">
+      <x-table.row :$loop :detail-route="route('master.medicine.show', $medicine->id)" :delete-route="route('master.medicine.destroy', $medicine->id)">
         <td>{{ $medicine->name }}</td>
         <td>{{ $medicine->category->name }}</td>
         <td>{{ $medicine->type->name }}</td>
         <td>{{ $medicine->unit->name }}</td>
         <td>{{ $medicine->stock }}</td>
         <td>{{ $medicine->expire_date }}</td>
-      </x-tr>
+      </x-table.row>
     @endforeach
-  </x-card-table>
+  </x-card.table>
 @endsection
