@@ -9,13 +9,12 @@
 @section('title', 'Satuan')
 
 @section('main')
-  <x-card-table id="unit" :columns="['Nama Satuan']" create-button-type="modal" modal-title="Tambah Satuan Obat"
-    input-placeholder="Masukkan nama satuan obat">
+  <x-card-table id="unit" :columns="['Nama Satuan']" create-button-type="modal" :create-route="route('master.unit.store')" modal-title="Tambah Satuan Obat">
     <x-slot:actions>
-      <a href="#" class="btn btn-success note-btn mr-2">
-        <i class="fas fa-file-pdf"></i>
-        Export PDF
-      </a>
+      <x-button type="link" color="success" class="note-btn">
+        <i class="fas fa-file-excel"></i>
+        Export Excel
+      </x-button>
     </x-slot:actions>
 
     @foreach ($units as $unit)
@@ -23,5 +22,9 @@
         <td>{{ $unit->name }}</td>
       </x-tr>
     @endforeach
+
+    <x-slot:create-form>
+      <input type="text" class="form-control mb-3" name="name" placeholder="Masukkan nama satuan obat">
+    </x-slot:create-form>
   </x-card-table>
 @endsection

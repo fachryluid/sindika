@@ -1,8 +1,8 @@
-@props(['id', 'columns', 'create-button-type', 'create-button-route', 'modal-title', 'input-placeholder'])
+@props(['id', 'columns', 'create-button-type', 'create-route', 'modal-title'])
 
 <div class="card">
   <div class="card-header">
-    <x-create-button :$id :type="$createButtonType" :route="$createButtonRoute ?? ''" />
+    <x-create-button :$id :type="$createButtonType" :route="$createRoute" />
 
     {{ $actions ?? '' }}
   </div>
@@ -13,14 +13,16 @@
   </div>
 </div>
 
-<x-modal :$id :title="$modalTitle" no-footer>
-  <form action="{{ route('master.unit.store') }}" method="POST">
-    @csrf
-    <input type="text" class="form-control mb-3" placeholder="{{ $inputPlaceholder }}">
+@if ($createButtonType === 'modal')
+  <x-modal :$id :title="$modalTitle" no-footer>
+    <form action="{{ $createRoute }}" method="POST">
+      @csrf
+      {{ $createForm ?? '' }}
 
-    <div class="text-right">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-      <button type="submit" class="btn btn-primary">Simpan</button>
-    </div>
-  </form>
-</x-modal>
+      <div class="text-right">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+      </div>
+    </form>
+  </x-modal>
+@endif

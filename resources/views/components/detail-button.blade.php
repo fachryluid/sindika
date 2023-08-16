@@ -1,3 +1,3 @@
 @props(['route'])
 
-<a href="{{ $route }}" class="btn btn-success btn-sm">Detail</a>
+<x-button type="link" :$route color="success" class="btn-sm">Detail</x-button>
