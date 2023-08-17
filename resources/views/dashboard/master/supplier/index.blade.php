@@ -9,7 +9,7 @@
 @section('title', 'Supplier')
 
 @section('main')
-  <x-card.table id="supplier" :create-route="route('master.supplier.create')" :columns="['Nama Supplier', 'Alamat', 'No. Hp']">
+  <x-card.table id="supplier" :columns="['Nama Supplier', 'Alamat', 'No. Hp']" create-button-type="link" :create-route="route('master.supplier.create')">
     @foreach ($suppliers as $supplier)
       <x-table.row :$loop :detail-route="route('master.supplier.show', $supplier->id)" :delete-route="''">
         <td>{{ $supplier->name }}</td>

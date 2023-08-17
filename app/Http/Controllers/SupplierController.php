@@ -43,7 +43,7 @@ class SupplierController extends Controller
    */
   public function create()
   {
-    //
+    return view('dashboard.master.supplier.create');
   }
 
   /**
