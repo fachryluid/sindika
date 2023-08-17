@@ -74,29 +74,29 @@
             <x-breadcrumb :$breadcrumbs />
           </div>
 
-          @if($errors->any())
-            <x-alert type="danger">
+          @if ($errors->any())
+            <x-alert.index type="danger">
               <ul class="m-0 px-3">
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
                 @endforeach
               </ul>
-            </x-alert>
+            </x-alert.index>
           @endif
           @if (session('success'))
-            <x-alert type="success">
+            <x-alert.index type="success">
               {{ session('success') }}
-            </x-alert>
+            </x-alert.index>
           @endif
           @if (session('warning'))
-            <x-alert type="warning">
+            <x-alert.index type="warning">
               {{ session('warning') }}
-            </x-alert>
+            </x-alert.index>
           @endif
           @if (session('info'))
-            <x-alert type="info">
+            <x-alert.index type="info">
               {{ session('info') }}
-            </x-alert>
+            </x-alert.index>
           @endif
 
           <div class="section-body">
@@ -116,7 +116,7 @@
     </div>
   </div>
 
-  @yield('modal')
+  @stack('modal')
 
   <!-- General JS Scripts -->
   <script src="{{ asset('/js/jquery.min.js') }}"></script>

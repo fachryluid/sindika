@@ -1,22 +1,3 @@
-@php
-    $actions = [
-      (object)[
-            'type' => 'modal',
-            'text' => 'Tambah',
-            'color' => 'primary',
-            'icon' => 'fa fa-plus',
-            'id' => 'addUnit'
-      ],
-      (object)[
-          'type' => 'link',
-          'text' => 'Export Pdf',
-          'color' => 'success',
-          'icon' => 'fas fa-file-pdf',
-          'url' => route('master.unit.create')
-      ]
-    ]
-@endphp
-
 @extends('layouts.master', [
     'breadcrumbs' => [
         'Dashboard' => route('dashboard.index'),
@@ -28,32 +9,22 @@
 @section('title', 'Satuan')
 
 @section('main')
-  <x-card-table id="unit" :actions="$actions" :columns="['Nama Satuan']">
-    @foreach ($units as $unit)
-      <x-tr :$loop :detail-route="route('master.unit.show', $unit->uuid)" :delete-route="''">
-        <td>{{ $unit->name }}</td>
-      </x-tr>
-    @endforeach
-  </x-card-table>
-@endsection
+  <x-card.table id="unit" :columns="['Nama Satuan']" create-button-type="modal" :create-route="route('master.unit.store')" modal-title="Tambah Satuan Obat">
+    <x-slot:actions>
+      <x-button.index type="link" color="success" class="note-btn">
+        <i class="fas fa-file-excel"></i>
+        Export Excel
+      </x-button.index>
+    </x-slot:actions>
 
-@section('modal')
-  <x-modal :modal-id="'addUnit'" :title="'Tambah Satuan'">
-    <form action="{{ route('master.unit.store') }}" method="POST">
-      @csrf
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="unit">Satuan</label>
-          <input type="text" class="form-control" name="name" id="unit" placeholder="Input Satuan">
-          @error('name')
-            <small class="text-danger float-right">{{ $message }}</small>
-          @enderror
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Simpan</button>
-      </div>
-    </form>
-  </x-modal>
+    @foreach ($units as $unit)
+      <x-table.row :$loop :detail-route="route('master.unit.show', $unit->uuid)" :delete-route="''">
+        <td>{{ $unit->name }}</td>
+      </x-table.row>
+    @endforeach
+
+    <x-slot:create-form>
+      <input type="text" class="form-control mb-3" name="name" placeholder="Masukkan nama satuan obat">
+    </x-slot:create-form>
+  </x-card.table>
 @endsection
