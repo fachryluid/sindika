@@ -17,19 +17,22 @@ class SupplierController extends Controller
     $suppliers = collect([
       (object) [
         "id" => 1,
-        "name" => "Strip",
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+        "name" => "One Setia",
         "address" => "Jl. Trans Sulawesi, Gtlo",
         "phone" => "0812-3456-7890"
       ],
       (object) [
         "id" => 2,
-        "name" => "Box",
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+        "name" => "Kimia Farma Jds",
         "address" => "Jl. Trans Sulawesi, Gtlo",
         "phone" => "0812-3456-7890"
       ],
       (object) [
         "id" => 3,
-        "name" => "Botol",
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+        "name" => "Cahaya Sejati",
         "address" => "Jl. Trans Sulawesi, Gtlo",
         "phone" => "0812-3456-7890"
       ],
@@ -59,7 +62,29 @@ class SupplierController extends Controller
    */
   public function show(Supplier $supplier)
   {
-    //
+    // no need to do this if `Supplier` and `Medicine` models are already created and related
+    // because `$supplier` already a `Supplier` model instance
+    $supplier = (object)[
+      "id" => 1,
+      "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+      "name" => "One Setia",
+      "medicines" => [
+        (object)[
+          "id" => 1,
+          "name" => "Paracetamol",
+        ],
+        (object)[
+          "id" => 2,
+          "name" => "Amoxilin",
+        ],
+        (object)[
+          "id" => 3,
+          "name" => "Ciprofloxacin",
+        ],
+      ]
+    ];
+
+    return view('dashboard.master.supplier.show', compact('supplier'));
   }
 
   /**

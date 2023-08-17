@@ -11,7 +11,7 @@
 @section('main')
   <x-card.table id="supplier" :columns="['Nama Supplier', 'Alamat', 'No. Hp']" create-button-type="link" :create-route="route('master.supplier.create')">
     @foreach ($suppliers as $supplier)
-      <x-table.row :$loop :detail-route="route('master.supplier.show', $supplier->id)">
+      <x-table.row :$loop :detail-route="route('master.supplier.show', $supplier->uuid)">
         <td>{{ $supplier->name }}</td>
         <td>{{ $supplier->address }}</td>
         <td>{{ $supplier->phone }}</td>
