@@ -17,14 +17,17 @@ class CategoryController extends Controller
     $categories = collect([
       (object) [
         "id" => 1,
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
         "name" => "Obat Narkotika"
       ],
       (object) [
         "id" => 2,
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
         "name" => "Obat Bebas"
       ],
       (object) [
         "id" => 3,
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
         "name" => "Obat Keras"
       ],
     ]);
@@ -53,7 +56,32 @@ class CategoryController extends Controller
    */
   public function show(Category $category)
   {
-    //
+    // no need to do this if `Type` and `Medicine` models are already created and related
+    // because `$type` already a `Type` model instance
+    $category = (object) [
+      "id" => 1,
+      "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+      "name" => "Narkotika",
+      "medicines" => [
+        (object) [
+          "id" => 1,
+          "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+          "name" => "Paracetamol",
+        ],
+        (object) [
+          "id" => 2,
+          "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+          "name" => "Amoxicillin",
+        ],
+        (object) [
+          "id" => 3,
+          "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+          "name" => "Ciprofloxacin",
+        ],
+      ]
+    ];
+
+    return view('dashboard.master.category.show', compact('category'));
   }
 
   /**
