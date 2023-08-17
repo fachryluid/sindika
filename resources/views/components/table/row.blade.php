@@ -1,4 +1,4 @@
-@props(['loop', 'detail-route', 'delete-route'])
+@props(['loop', 'edit-route', 'detail-route', 'delete-route'])
 
 <tr>
   <td class="text-center">{{ $loop->iteration }}</td>
@@ -6,6 +6,9 @@
 
   @if (isset($detailRoute) || isset($deleteRoute))
     <td>
+      @isset($editRoute)
+        <x-button.edit :route="$editRoute" size="sm" />
+      @endisset
       @isset($detailRoute)
         <x-button.detail :route="$detailRoute" size="sm" />
       @endisset
