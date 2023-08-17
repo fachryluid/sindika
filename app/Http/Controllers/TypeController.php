@@ -17,14 +17,17 @@ class TypeController extends Controller
     $types = collect([
       (object) [
         "id" => 1,
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
         "name" => "Analgesik"
       ],
       (object) [
         "id" => 2,
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
         "name" => "Abses"
       ],
       (object) [
         "id" => 3,
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
         "name" => "Abdomen/Perut"
       ],
     ]);
@@ -53,7 +56,29 @@ class TypeController extends Controller
    */
   public function show(Type $type)
   {
-    //
+    // no need to do this if `Type` and `Medicine` models are already created and related
+    // because `$type` already a `Type` model instance
+    $type = (object)[
+      "id" => 1,
+      "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+      "name" => "Analgesik",
+      "medicines" => [
+        (object)[
+          "id" => 1,
+          "name" => "Paracetamol",
+        ],
+        (object)[
+          "id" => 2,
+          "name" => "Amoxilin",
+        ],
+        (object)[
+          "id" => 3,
+          "name" => "Amoxilin",
+        ],
+      ]
+    ];
+
+    return view('dashboard.master.type.show', compact('type'));
   }
 
   /**

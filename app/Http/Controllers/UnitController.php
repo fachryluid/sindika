@@ -55,20 +55,14 @@ class UnitController extends Controller
         (object)[
           'id' => 1,
           'name' => 'Paracetamol',
-          'stock' => 83,
-          'expire_date' => '12/05/25'
         ],
         (object)[
           'id' => 2,
           'name' => 'Amoxilin',
-          'stock' => 83,
-          'expire_date' => '12/05/25'
         ],
         (object)[
           'id' => 3,
           'name' => 'Dexamethasone',
-          'stock' => 83,
-          'expire_date' => '12/05/25'
         ],
       ]
     ];
