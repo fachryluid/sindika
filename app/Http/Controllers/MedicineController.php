@@ -80,7 +80,7 @@ class MedicineController extends Controller
    */
   public function create()
   {
-    //
+    return view('dashboard.master.medicine.create');
   }
 
   /**

@@ -7,7 +7,7 @@
   </div>
 
   <div class="card-body pt-0">
-    <form>
+    <x-form.index>
       <div class="form-group">
         <div class="input-group">
           <select id="{{ $inputId }}" class="custom-select">
@@ -21,6 +21,6 @@
           </div>
         </div>
       </div>
-    </form>
+    </x-form.index>
   </div>
 </div>

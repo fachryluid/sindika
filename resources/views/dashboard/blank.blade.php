@@ -1,7 +1,7 @@
 @extends('layouts.master', [
     'breadcrumbs' => [
-        'Parent' => '#',
-        'Child' => '',
+        'Dashboard' => route('dashboard.index'),
+        'Blank' => '',
     ],
 ])
 

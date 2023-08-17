@@ -5,10 +5,10 @@
   {{ $slot }}
   <td>
     @if ($detailRoute)
-      <x-detail-button :route="$detailRoute" />
+      <x-button.detail :route="$detailRoute" />
     @endif
     @if ($deleteRoute)
-      <x-delete-button :route="$deleteRoute" />
+      <x-button.delete :route="$deleteRoute" />
     @endif
   </td>
 </tr>
