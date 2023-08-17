@@ -45,7 +45,35 @@ class UnitController extends Controller
    */
   public function show(Unit $unit)
   {
-    //
+    // no need to do this if `Unit` and `Medicine` models are already created and related
+    // because `$unit` already a `Unit` model instance
+    $unit = (object)[
+      'id' => 1,
+      'uuid' => '128c4c7f-2199-4e20-819b-8074cbfc72cb',
+      'name' => 'Strip',
+      'medicines' => [
+        (object)[
+          'id' => 1,
+          'name' => 'Paracetamol',
+          'stock' => 83,
+          'expire_date' => '12/05/25'
+        ],
+        (object)[
+          'id' => 2,
+          'name' => 'Amoxilin',
+          'stock' => 83,
+          'expire_date' => '12/05/25'
+        ],
+        (object)[
+          'id' => 3,
+          'name' => 'Dexamethasone',
+          'stock' => 83,
+          'expire_date' => '12/05/25'
+        ],
+      ]
+    ];
+
+    return view('dashboard.master.unit.show', compact('unit'));
   }
 
   /**

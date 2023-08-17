@@ -1,19 +1,26 @@
-@props(['id', 'columns', 'create-button-type', 'create-route', 'modal-title'])
+@props(['id', 'title', 'columns', 'create-button-type', 'create-route', 'modal-title', 'no-actions-field' => false])
 
 <div class="card">
   <div class="card-header">
-    <x-button.create :$id :type="$createButtonType" :route="$createRoute" />
+    <h4 class="card-title" style="min-height: unset">{{ $title ?? '' }}</h4>
+    @isset($createButtonType)
+      <x-button.create :$id :type="$createButtonType" :route="$createRoute" />
+    @endisset
 
     {{ $actions ?? '' }}
   </div>
   <div class="card-body">
-    <x-table.datatable :$id :$columns>
+    <x-table.datatable :$id :$columns :no-actions="$noActionsField ?? false">
       {{ $slot }}
     </x-table.datatable>
   </div>
+
+  <div class="card-footer">
+    {{ $cardFooter ?? '' }}
+  </div>
 </div>
 
-@if ($createButtonType === 'modal')
+@if (isset($createButtonType) && $createButtonType === 'modal')
   <x-modal.index :$id :title="$modalTitle" no-footer>
     <form action="{{ $createRoute }}" method="POST">
       @csrf

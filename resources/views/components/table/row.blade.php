@@ -3,12 +3,15 @@
 <tr>
   <td class="text-center">{{ $loop->iteration }}</td>
   {{ $slot }}
-  <td>
-    @if ($detailRoute)
-      <x-button.detail :route="$detailRoute" />
-    @endif
-    @if ($deleteRoute)
-      <x-button.delete :route="$deleteRoute" />
-    @endif
-  </td>
+
+  @if (isset($detailRoute) || isset($deleteRoute))
+    <td>
+      @isset($detailRoute)
+        <x-button.detail :route="$detailRoute" size="sm" />
+      @endisset
+      @isset($deleteRoute)
+        <x-button.delete :route="$deleteRoute" size="sm" />
+      @endisset
+    </td>
+  @endif
 </tr>

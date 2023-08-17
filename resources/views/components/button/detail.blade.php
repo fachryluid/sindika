@@ -1,3 +1,3 @@
-@props(['route'])
+@props(['route', 'size'])
 
-<x-button.index type="link" :$route color="success" class="btn-sm">Detail</x-button.index>
+<x-button.index type="link" :$route color="success" :class="isset($size) ? 'btn-' . $size : ''">Detail</x-button.index>

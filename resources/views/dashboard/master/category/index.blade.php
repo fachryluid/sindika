@@ -12,7 +12,7 @@
   <x-card.table id="category" :columns="['Nama Kategori']" create-button-type="modal" :create-route="route('master.category.store')"
     modal-title="Tambah Kategori Obat">
     @foreach ($categories as $category)
-      <x-table.row :$loop :detail-route="route('master.category.show', $category->id)" :delete-route="''">
+      <x-table.row :$loop :detail-route="route('master.category.show', $category->id)">
         <td>{{ $category->name }}</td>
       </x-table.row>
     @endforeach

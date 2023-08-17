@@ -11,7 +11,7 @@
 @section('main')
   <x-card.table id="type" :columns="['Nama Jenis']" create-button-type="modal" :create-route="route('master.type.store')" modal-title="Tambah Jenis Obat">
     @foreach ($types as $type)
-      <x-table.row :$loop :detail-route="route('master.type.show', $type->id)" :delete-route="''">
+      <x-table.row :$loop :detail-route="route('master.type.show', $type->id)">
         <td>{{ $type->name }}</td>
       </x-table.row>
     @endforeach
