@@ -1,4 +1,4 @@
-@props(['id', 'columns'])
+@props(['id', 'columns', 'no-actions' => false])
 
 <div class="table-responsive">
   <table class="table table-striped" id="table-{{ $id }}">
@@ -8,7 +8,9 @@
         @foreach ($columns as $column)
           <th>{{ $column }}</th>
         @endforeach
-        <th>Aksi</th>
+        @unless ($noActions)
+          <th>Aksi</th>
+        @endunless
       </tr>
     </thead>
     <tbody>

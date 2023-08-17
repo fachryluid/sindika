@@ -1,7 +1,7 @@
-@props(['type' => 'button', 'color' => 'primary', 'route' => ''])
+@props(['type' => 'button', 'color' => 'primary', 'route'])
 
 @if ($type === 'link')
-  <a href="{{ $route ?? '' }}" {{ $attributes->merge(['class' => 'btn btn-' . $color ?? 'primary']) }} role="button">
+  <a href="{{ $route }}" {{ $attributes->merge(['class' => 'btn btn-' . $color ?? 'primary']) }} role="button">
     {{ $slot }}
   </a>
 @else

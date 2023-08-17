@@ -17,8 +17,7 @@ class MedicineController extends Controller
     $medicines = collect([
       (object) [
         "id" => 1,
-        "name" =>
-        "Amoxcilin",
+        "name" => "Amoxcilin",
         "category" => (object) [
           "id" => 2,
           "name" => "Obat Bebas"
