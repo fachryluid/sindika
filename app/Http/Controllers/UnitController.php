@@ -46,10 +46,10 @@ class UnitController extends Controller
     }
   }
 
-  public function destroy(Unit $unit, $password='admin123')
+  public function destroy(Unit $unit, Request $request)
   {
     try {
-      throw_if(!confirmPassword($password), 'Password yang anda masukkan salah!');
+      throw_if(!confirmPassword($request->password), 'Password yang anda masukkan salah!');
       Unit::destroy($unit->id);
       return redirect()->route('master.unit.index')->with('success', 'Data '.$unit->name.' berhasil dihapus!');
     } catch (\Throwable $th) {
