@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
+            $table->string('name');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
