@@ -22,4 +22,9 @@ class Unit extends Model
       $model->uuid = (string) Uuid::uuid4();
     });
   }
+
+  public function medicines(): HasMany
+  {
+    return $this->hasMany(Medicine::class);
+  }
 }

@@ -22,4 +22,9 @@ class Medicine extends Model
       $model->uuid = (string) Uuid::uuid4();
     });
   }
+
+  public function unit(): BelongsTo
+  {
+    return $this->belongsTo(Unit::class);
+  }
 }

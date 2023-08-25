@@ -8,27 +8,12 @@ use App\Models\Unit;
 
 class UnitController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   */
   public function index()
   {
     $units = Unit::all();
-
     return view('dashboard.master.unit.index', compact('units'));
   }
 
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
-  }
-
-  /**
-   * Store a newly created resource in storage.
-   */
   public function store(StoreUnitRequest $request)
   {
     try {
@@ -39,58 +24,37 @@ class UnitController extends Controller
         ->withErrors(['message' => ['Terjadi kesalahan saat menyimpan data!', $th->getMessage()]]);
     }
   }
-
-  /**
-   * Display the specified resource.
-   */
   public function show(Unit $unit)
   {
-    // no need to do this if `Unit` and `Medicine` models are already created and related
-    // because `$unit` already a `Unit` model instance
-    $unit = (object)[
-      'id' => 1,
-      'uuid' => '128c4c7f-2199-4e20-819b-8074cbfc72cb',
-      'name' => 'Strip',
-      'medicines' => [
-        (object)[
-          'id' => 1,
-          'name' => 'Paracetamol',
-        ],
-        (object)[
-          'id' => 2,
-          'name' => 'Amoxilin',
-        ],
-        (object)[
-          'id' => 3,
-          'name' => 'Dexamethasone',
-        ],
-      ]
-    ];
-
-    return view('dashboard.master.unit.show', compact('unit'));
+    try {
+      $unit = Unit::where('uuid', $unit->uuid)->with('medicines')->firstOrFail();
+      return view('dashboard.master.unit.show', compact('unit'));
+    } catch (\Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat mengambil data!', $th->getMessage()]]);
+    }
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   */
-  public function edit(Unit $unit)
-  {
-    //
-  }
-
-  /**
-   * Update the specified resource in storage.
-   */
   public function update(UpdateUnitRequest $request, Unit $unit)
   {
-    //
+    try {
+      Unit::where('id', $unit->id)->update($request->all());
+      return redirect()->route('master.unit.index')->with('success', 'Data berhasil diedit!');
+    } catch (\Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat mengedit data!', $th->getMessage()]]);
+    }
   }
 
-  /**
-   * Remove the specified resource from storage.
-   */
-  public function destroy(Unit $unit)
+  public function destroy(Unit $unit, $password='admin123')
   {
-    //
+    try {
+      throw_if(!confirmPassword($password), 'Password yang anda masukkan salah!');
+      Unit::destroy($unit->id);
+      return redirect()->route('master.unit.index')->with('success', 'Data '.$unit->name.' berhasil dihapus!');
+    } catch (\Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat menghapus data!', $th->getMessage()]]);
+    }
   }
 }
