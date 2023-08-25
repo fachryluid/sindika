@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
+            // $table->foreignId('type_id')->constrained('types');
+            // $table->foreignId('category_id')->constrained('categories');
             $table->uuid('uuid')->unique();
             $table->string('name');
             $table->string('image')->nullable();
