@@ -34,11 +34,11 @@ Route::get('/dashboard', function () {
 })->name('dashboard.index');
 
 Route::prefix('master')->name('master.')->group(function () {
-  Route::resource('/unit', UnitController::class)->except(['create', 'edit', 'update'])->names('unit');
-  Route::resource('/type', TypeController::class)->except(['create', 'edit', 'update'])->names('type');
-  Route::resource('/category', CategoryController::class)->except(['create', 'edit', 'update'])->names('category');
-  Route::resource('/medicine', MedicineController::class)->except(['edit', 'update'])->names('medicine');
-  Route::resource('/supplier', SupplierController::class)->except(['edit', 'update'])->names('supplier');
+  Route::resource('/unit', UnitController::class)->except(['create', 'edit'])->names('unit');
+  Route::resource('/type', TypeController::class)->except(['create', 'edit'])->names('type');
+  Route::resource('/category', CategoryController::class)->except(['create', 'edit'])->names('category');
+  Route::resource('/medicine', MedicineController::class)->names('medicine');
+  Route::resource('/supplier', SupplierController::class)->names('supplier');
 });
 
 Route::prefix('calculation')->name('calculation.')->group(function () {
