@@ -1,9 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Hash;
+
 if (!function_exists('confirmPassword')) {
-  function confirmPassword($password)
+  function confirmPassword($inputPassword)
   {
-    if ($password === 'admin123?') {
+    $user = session('user');
+    if (Hash::check($inputPassword, $user->password)) {
       return true;
     }
     return false;
