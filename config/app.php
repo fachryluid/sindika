@@ -185,4 +185,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'admin_password' => env('ADMIN_TEST_PASSWORD', 'pass1234')
 ];
