@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUnitRequest;
 use App\Http\Requests\UpdateUnitRequest;
+use Illuminate\Http\Request;
 use App\Models\Unit;
 
 class UnitController extends Controller
@@ -51,7 +52,7 @@ class UnitController extends Controller
     try {
       throw_if(!confirmPassword($request->password), 'Password yang anda masukkan salah!');
       Unit::destroy($unit->id);
-      return redirect()->route('master.unit.index')->with('success', 'Data '.$unit->name.' berhasil dihapus!');
+      return redirect()->route('master.unit.index')->with('success', 'Data Satuan '.$unit->name.' berhasil dihapus!');
     } catch (\Throwable $th) {
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan saat menghapus data!', $th->getMessage()]]);
