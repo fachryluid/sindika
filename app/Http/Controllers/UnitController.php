@@ -6,7 +6,6 @@ use App\Http\Requests\StoreUnitRequest;
 use App\Http\Requests\UpdateUnitRequest;
 use Illuminate\Http\Request;
 use App\Models\Unit;
-use Illuminate\Http\Request;
 use Throwable;
 
 class UnitController extends Controller
