@@ -75,28 +75,28 @@
           </div>
 
           @if ($errors->any())
-            <x-alert.index type="danger">
+            <x-alert type="danger">
               <ul class="m-0 px-3">
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
                 @endforeach
               </ul>
-            </x-alert.index>
+            </x-alert>
           @endif
           @if (session('success'))
-            <x-alert.index type="success">
+            <x-alert type="success">
               {{ session('success') }}
-            </x-alert.index>
+            </x-alert>
           @endif
           @if (session('warning'))
-            <x-alert.index type="warning">
+            <x-alert type="warning">
               {{ session('warning') }}
-            </x-alert.index>
+            </x-alert>
           @endif
           @if (session('info'))
-            <x-alert.index type="info">
+            <x-alert type="info">
               {{ session('info') }}
-            </x-alert.index>
+            </x-alert>
           @endif
 
           <div class="section-body">

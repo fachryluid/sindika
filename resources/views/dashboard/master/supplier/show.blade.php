@@ -19,10 +19,10 @@
 
     <x-slot:card-footer>
       <div class="text-right">
-        <x-button.index type="link" route="{{ route('master.supplier.index') }}" color="secondary" class="mr-2">
+        <x-button type="link" route="{{ route('master.supplier.index') }}" color="secondary" class="mr-2">
           <i class="fas fa-arrow-left"></i>
           Kembali
-        </x-button.index>
+        </x-button>
 
         <x-button.delete route="{{ route('master.supplier.destroy', $supplier->uuid) }}" text="Hapus Data Supplier Ini" />
       </div>

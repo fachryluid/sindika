@@ -7,12 +7,12 @@
     </div>
   </div>
   <div class="card-body">
-    <x-form.index action="{{ $action ?? '' }}" method="POST">
+    <x-form action="{{ $action ?? '' }}" method="POST">
       {{ $slot }}
 
       <div class="text-right">
         <x-button type="submit">Simpan</x-button>
       </div>
-    </x-form.index>
+    </x-form>
   </div>
 </div>
