@@ -8,6 +8,8 @@ use Ramsey\Uuid\Uuid;
 
 class Medicine extends Model
 {
+  use HasFactory;
+
   protected $guarded = ['_token'];
 
   public function getRouteKeyName(): string
