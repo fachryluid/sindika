@@ -1,11 +1,11 @@
-@props(['id', 'route', 'size' => null, 'text'])
+@props(['id', 'route', 'size' => null, 'text', 'confirm' => 'Data terkait akan dihapus, apakah Anda ingin melanjutkan?'])
 
 <x-modal.trigger :$id color="danger" :$size>
   <i class="fas fa-trash"></i>
   {{ $text ?? '' }}
 </x-modal.trigger>
 
-<x-modal :$id title="Data data terkait akan dihapus, apakah Anda ingin melanjutkan?" no-footer>
+<x-modal :$id :title="$confirm" no-footer>
   <x-form action="{{ $route }}" method="DELETE">
     <x-form.input :id="'password-' . $id" type="password" name="password" label="Password Anda"
       placeholder="Masukkan password untuk konfirmasi" required />

@@ -18,7 +18,9 @@
     </x-slot:actions>
 
     @foreach ($units as $unit)
-      <x-table.row :$loop :id="$unit->uuid" :detail-route="route('master.unit.show', $unit->uuid)" :delete-route="route('master.unit.destroy', $unit->uuid)">
+      <x-table.row :$loop :id="$unit->uuid"
+        delete-confirm="Data obat terkait satuan {{ $unit->name }} akan dihapus, apakah Anda ingin melanjutkan?"
+        :detail-route="route('master.unit.show', $unit->uuid)" :delete-route="route('master.unit.destroy', $unit->uuid)">
         <td>{{ $unit->name }}</td>
       </x-table.row>
     @endforeach

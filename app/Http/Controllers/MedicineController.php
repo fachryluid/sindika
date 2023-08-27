@@ -17,7 +17,7 @@ class MedicineController extends Controller
     $medicines = collect([
       (object) [
         "id" => 1,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72ca",
         "name" => "Amoxcilin",
         "expire_date" => "12/07/24"
       ],
@@ -29,7 +29,7 @@ class MedicineController extends Controller
       ],
       (object) [
         "id" => 3,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cc",
         "name" => "Mixagrip",
         "expire_date" => "12/05/25"
       ],
