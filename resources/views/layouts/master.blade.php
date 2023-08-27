@@ -50,6 +50,7 @@
               'Jenis' => ['url' => route('master.type.index'), 'icon' => 'th-large'],
               'Kategori' => ['url' => route('master.category.index'), 'icon' => 'th'],
               'Obat' => ['url' => route('master.medicine.index'), 'icon' => 'pills'],
+              'Stok' => ['url' => route('master.stock.index'), 'icon' => 'boxes'],
               'Supplier' => ['url' => route('master.supplier.index'), 'icon' => 'hand-holding-heart'],
           ],
       
