@@ -5,84 +5,75 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMedicineRequest;
 use App\Http\Requests\UpdateMedicineRequest;
 use App\Models\Medicine;
+use Illuminate\Http\Request;
+use Throwable;
 
 class MedicineController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   */
   public function index()
   {
-    // dummy data, use actual `Medicine` model instead
-    $medicines = collect([
-      (object) [
-        "id" => 1,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72ca",
-        "name" => "Amoxcilin",
-        "expire_date" => "12/07/24"
-      ],
-      (object) [
-        "id" => 2,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
-        "name" => "Dexitab",
-        "expire_date" => "20/10/24"
-      ],
-      (object) [
-        "id" => 3,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cc",
-        "name" => "Mixagrip",
-        "expire_date" => "12/05/25"
-      ],
-    ]);
-
+    $medicines = Medicine::all();
     return view('dashboard.master.medicine.index', compact('medicines'));
   }
 
-  /**
-   * Show the form for creating a new resource.
-   */
   public function create()
   {
     return view('dashboard.master.medicine.create');
   }
 
-  /**
-   * Store a newly created resource in storage.
-   */
   public function store(StoreMedicineRequest $request)
   {
-    //
+    try {
+      Medicine::create($request->all());
+      return redirect()->route('master.medicine.index')->with('success', 'Data berhasil disimpan!');
+    } catch (Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat menyimpan data!', $th->getMessage()]]);
+    }
   }
 
-  /**
-   * Display the specified resource.
-   */
   public function show(Medicine $medicine)
   {
-    //
+    try {
+      $medicine = Medicine::where('uuid', $medicine->uuid)->firstOrFail();
+      return view('dashboard.master.medicine.show', compact('medicine'));
+    } catch (Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat mengambil data!', $th->getMessage()]]);
+    }
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   */
   public function edit(Medicine $medicine)
   {
-    //
+    try {
+      $medicine = Medicine::where('uuid', $medicine->uuid)->firstOrFail();
+      return view('dashboard.master.medicine.edit', compact('medicine'));
+    } catch (Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat mengambil data!', $th->getMessage()]]);
+    }
   }
 
-  /**
-   * Update the specified resource in storage.
-   */
   public function update(UpdateMedicineRequest $request, Medicine $medicine)
   {
-    //
+    try {
+      Medicine::where('id', $medicine->id)->update($request->all());
+      return redirect()->route('master.medicine.index')->with('success', 'Data berhasil diedit!');
+    } catch (Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat mengedit data!', $th->getMessage()]]);
+    }
   }
 
-  /**
-   * Remove the specified resource from storage.
-   */
-  public function destroy(Medicine $medicine)
+  public function destroy(Medicine $medicine, Request $request)
   {
-    //
+    try {
+      throw_if(!confirmPassword($request->password), 'Password yang anda masukkan salah!');
+      Medicine::destroy($medicine->id);
+      return redirect()->route('master.medicine.index')->with('success', 'Data Obat ' . $medicine->name . ' berhasil dihapus!');
+    } catch (Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat menghapus data!', $th->getMessage()]]);
+    }
   }
 }
