@@ -26,6 +26,7 @@ class TypeController extends Controller
         ->withErrors(['message' => ['Terjadi kesalahan saat menyimpan data!', $th->getMessage()]]);
     }
   }
+
   public function show(Type $type)
   {
     try {
