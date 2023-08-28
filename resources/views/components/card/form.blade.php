@@ -1,4 +1,4 @@
-@props(['action', 'title'])
+@props(['action', 'title', 'send-files' => false, 'method' => 'POST'])
 
 <div class="card">
   <div class="card-header" style="min-height: unset">
@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="card-body">
-    <x-form action="{{ $action ?? '' }}" method="POST">
+    <x-form action="{{ $action ?? '' }}" :$method :send-files="$sendFiles">
       {{ $slot }}
 
       <div class="text-right">
