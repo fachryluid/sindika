@@ -5,106 +5,59 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
+use Throwable;
 
 class CategoryController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   */
   public function index()
   {
-    // dummy data, use actual `Category` model instead
-    $categories = collect([
-      (object) [
-        "id" => 1,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72ca",
-        "name" => "Obat Narkotika"
-      ],
-      (object) [
-        "id" => 2,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
-        "name" => "Obat Bebas"
-      ],
-      (object) [
-        "id" => 3,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cc",
-        "name" => "Obat Keras"
-      ],
-    ]);
-
+    $categories = Category::all();
     return view('dashboard.master.category.index', compact('categories'));
   }
 
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
-  }
-
-  /**
-   * Store a newly created resource in storage.
-   */
   public function store(StoreCategoryRequest $request)
   {
-    //
+    try {
+      Category::create($request->all());
+      return redirect()->route('master.category.index')->with('success', 'Data berhasil disimpan!');
+    } catch (Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat menyimpan data!', $th->getMessage()]]);
+    }
   }
 
-  /**
-   * Display the specified resource.
-   */
   public function show(Category $category)
   {
-    // no need to do this if `Type` and `Medicine` models are already created and related
-    // because `$type` already a `Type` model instance
-    $category = (object) [
-      "id" => 1,
-      "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
-      "name" => "Narkotika",
-      "medicines" => [
-        (object) [
-          "id" => 1,
-          "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
-          "name" => "Paracetamol",
-        ],
-        (object) [
-          "id" => 2,
-          "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
-          "name" => "Amoxicillin",
-        ],
-        (object) [
-          "id" => 3,
-          "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
-          "name" => "Ciprofloxacin",
-        ],
-      ]
-    ];
-
-    return view('dashboard.master.category.show', compact('category'));
+    try {
+      $category = Category::where('uuid', $category->uuid)->with('medicines')->firstOrFail();
+      return view('dashboard.master.category.show', compact('category'));
+    } catch (Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat mengambil data!', $th->getMessage()]]);
+    }
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   */
-  public function edit(Category $category)
-  {
-    //
-  }
-
-  /**
-   * Update the specified resource in storage.
-   */
   public function update(UpdateCategoryRequest $request, Category $category)
   {
-    //
+    try {
+      Category::where('id', $category->id)->update($request->all());
+      return redirect()->route('master.category.index')->with('success', 'Data berhasil diedit!');
+    } catch (Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat mengedit data!', $th->getMessage()]]);
+    }
   }
 
-  /**
-   * Remove the specified resource from storage.
-   */
-  public function destroy(Category $category)
+  public function destroy(Category $category, Request $request)
   {
-    //
+    try {
+      throw_if(!confirmPassword($request->password), 'Password yang anda masukkan salah!');
+      Category::destroy($category->id);
+      return redirect()->route('master.category.index')->with('success', 'Data Kategori ' . $category->name . ' berhasil dihapus!');
+    } catch (Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat menghapus data!', $th->getMessage()]]);
+    }
   }
 }

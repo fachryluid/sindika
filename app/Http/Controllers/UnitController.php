@@ -26,6 +26,7 @@ class UnitController extends Controller
         ->withErrors(['message' => ['Terjadi kesalahan saat menyimpan data!', $th->getMessage()]]);
     }
   }
+
   public function show(Unit $unit)
   {
     try {
