@@ -50,6 +50,7 @@
               'Jenis' => ['url' => route('master.type.index'), 'icon' => 'th-large'],
               'Kategori' => ['url' => route('master.category.index'), 'icon' => 'th'],
               'Obat' => ['url' => route('master.medicine.index'), 'icon' => 'pills'],
+              'Stok' => ['url' => route('master.stock.index'), 'icon' => 'boxes'],
               'Supplier' => ['url' => route('master.supplier.index'), 'icon' => 'hand-holding-heart'],
           ],
       
@@ -75,28 +76,28 @@
           </div>
 
           @if ($errors->any())
-            <x-alert.index type="danger">
+            <x-alert type="danger">
               <ul class="m-0 px-3">
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
                 @endforeach
               </ul>
-            </x-alert.index>
+            </x-alert>
           @endif
           @if (session('success'))
-            <x-alert.index type="success">
+            <x-alert type="success">
               {{ session('success') }}
-            </x-alert.index>
+            </x-alert>
           @endif
           @if (session('warning'))
-            <x-alert.index type="warning">
+            <x-alert type="warning">
               {{ session('warning') }}
-            </x-alert.index>
+            </x-alert>
           @endif
           @if (session('info'))
-            <x-alert.index type="info">
+            <x-alert type="info">
               {{ session('info') }}
-            </x-alert.index>
+            </x-alert>
           @endif
 
           <div class="section-body">

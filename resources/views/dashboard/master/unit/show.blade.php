@@ -19,12 +19,12 @@
 
     <x-slot:card-footer>
       <div class="text-right">
-        <x-button.index type="link" route="{{ route('master.unit.index') }}" color="secondary" class="mr-2">
+        <x-button type="link" route="{{ route('master.unit.index') }}" color="secondary" class="mr-2">
           <i class="fas fa-arrow-left"></i>
           Kembali
-        </x-button.index>
+        </x-button>
 
-        <x-button.delete route="{{ route('master.unit.destroy', $unit->uuid) }}" text="Hapus Data Satuan Ini" />
+        <x-button.delete :id="$unit->uuid" :route="route('master.unit.destroy', $unit->uuid)" text="Hapus Data Satuan Ini" />
       </div>
     </x-slot:card-footer>
   </x-card.table>

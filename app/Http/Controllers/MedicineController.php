@@ -17,56 +17,20 @@ class MedicineController extends Controller
     $medicines = collect([
       (object) [
         "id" => 1,
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72ca",
         "name" => "Amoxcilin",
-        "category" => (object) [
-          "id" => 2,
-          "name" => "Obat Bebas"
-        ],
-        "type" => (object) [
-          "id" => 3,
-          "name" => "Abdomen/Perut"
-        ],
-        "unit" => (object) [
-          "id" => 1,
-          "name" => "Strip"
-        ],
-        "stock" => 83,
         "expire_date" => "12/07/24"
       ],
       (object) [
         "id" => 2,
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
         "name" => "Dexitab",
-        "category" => (object) [
-          "id" => 1,
-          "name" => "Obat Narkotika"
-        ],
-        "type" => (object) [
-          "id" => 3,
-          "name" => "Abdomen/Perut"
-        ],
-        "unit" => (object) [
-          "id" => 3,
-          "name" => "Botol"
-        ],
-        "stock" => 15,
         "expire_date" => "20/10/24"
       ],
       (object) [
         "id" => 3,
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cc",
         "name" => "Mixagrip",
-        "category" => (object) [
-          "id" => 2,
-          "name" => "Obat Bebas"
-        ],
-        "type" => (object) [
-          "id" => 3,
-          "name" => "Abdomen/Perut"
-        ],
-        "unit" => (object) [
-          "id" => 1,
-          "name" => "Strip"
-        ],
-        "stock" => 83,
         "expire_date" => "12/05/25"
       ],
     ]);

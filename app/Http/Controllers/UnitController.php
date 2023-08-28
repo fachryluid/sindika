@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUnitRequest;
 use App\Http\Requests\UpdateUnitRequest;
 use Illuminate\Http\Request;
 use App\Models\Unit;
+use Throwable;
 
 class UnitController extends Controller
 {
@@ -20,7 +21,7 @@ class UnitController extends Controller
     try {
       Unit::create($request->all());
       return redirect()->route('master.unit.index')->with('success', 'Data berhasil disimpan!');
-    } catch (\Throwable $th) {
+    } catch (Throwable $th) {
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan saat menyimpan data!', $th->getMessage()]]);
     }
@@ -30,7 +31,7 @@ class UnitController extends Controller
     try {
       $unit = Unit::where('uuid', $unit->uuid)->with('medicines')->firstOrFail();
       return view('dashboard.master.unit.show', compact('unit'));
-    } catch (\Throwable $th) {
+    } catch (Throwable $th) {
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan saat mengambil data!', $th->getMessage()]]);
     }
@@ -41,7 +42,7 @@ class UnitController extends Controller
     try {
       Unit::where('id', $unit->id)->update($request->all());
       return redirect()->route('master.unit.index')->with('success', 'Data berhasil diedit!');
-    } catch (\Throwable $th) {
+    } catch (Throwable $th) {
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan saat mengedit data!', $th->getMessage()]]);
     }
@@ -52,8 +53,8 @@ class UnitController extends Controller
     try {
       throw_if(!confirmPassword($request->password), 'Password yang anda masukkan salah!');
       Unit::destroy($unit->id);
-      return redirect()->route('master.unit.index')->with('success', 'Data Satuan '.$unit->name.' berhasil dihapus!');
-    } catch (\Throwable $th) {
+      return redirect()->route('master.unit.index')->with('success', 'Data Satuan ' . $unit->name . ' berhasil dihapus!');
+    } catch (Throwable $th) {
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan saat menghapus data!', $th->getMessage()]]);
     }

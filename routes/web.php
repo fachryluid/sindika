@@ -3,6 +3,7 @@
 use App\Http\Controllers\CalculationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UnitController;
@@ -39,6 +40,7 @@ Route::prefix('master')->name('master.')->group(function () {
   Route::resource('/category', CategoryController::class)->except(['create', 'edit'])->names('category');
   Route::resource('/medicine', MedicineController::class)->names('medicine');
   Route::resource('/supplier', SupplierController::class)->names('supplier');
+  Route::resource('/stock', StockController::class)->except(['destroy'])->names('stock');
 });
 
 Route::prefix('calculation')->name('calculation.')->group(function () {

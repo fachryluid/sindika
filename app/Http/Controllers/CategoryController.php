@@ -17,7 +17,7 @@ class CategoryController extends Controller
     $categories = collect([
       (object) [
         "id" => 1,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72ca",
         "name" => "Obat Narkotika"
       ],
       (object) [
@@ -27,7 +27,7 @@ class CategoryController extends Controller
       ],
       (object) [
         "id" => 3,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cc",
         "name" => "Obat Keras"
       ],
     ]);

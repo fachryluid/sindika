@@ -17,7 +17,7 @@ class SupplierController extends Controller
     $suppliers = collect([
       (object) [
         "id" => 1,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72ca",
         "name" => "One Setia",
         "address" => "Jl. Trans Sulawesi, Gtlo",
         "phone" => "0812-3456-7890"
@@ -31,7 +31,7 @@ class SupplierController extends Controller
       ],
       (object) [
         "id" => 3,
-        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cb",
+        "uuid" => "128c4c7f-2199-4e20-819b-8074cbfc72cc",
         "name" => "Cahaya Sejati",
         "address" => "Jl. Trans Sulawesi, Gtlo",
         "phone" => "0812-3456-7890"
