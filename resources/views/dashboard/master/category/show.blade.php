@@ -24,7 +24,7 @@
           Kembali
         </x-button>
 
-        <x-button.delete route="{{ route('master.category.destroy', $category->uuid) }}" text="Hapus Data Kategori Ini" />
+        <x-button.delete :id="$category->uuid" route="{{ route('master.category.destroy', $category->uuid) }}" text="Hapus Data Kategori Ini" />
       </div>
     </x-slot:card-footer>
   </x-card.table>
