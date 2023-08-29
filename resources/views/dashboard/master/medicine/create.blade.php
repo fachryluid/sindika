@@ -27,6 +27,6 @@
         <option value="{{ $category->id }}">{{ $category->name }}</option>
       @endforeach
     </x-form.input>
-    <x-form.input type="image" name="image" label="Gambar Obat" />
+    <x-form.input type="image" name="image" label="Gambar Obat" optional />
   </x-card.form>
 @endsection

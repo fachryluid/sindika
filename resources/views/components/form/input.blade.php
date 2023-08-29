@@ -14,7 +14,7 @@
       {{ $slot }}
     </select>
   @elseif($type === 'image')
-    <input type="file" class="form-control" id="{{ $id }}" name="{{ $name }}"
+    <input type="file" class="form-control" id="{{ $id }}" name="{{ $name }}" accept="image/*"
       value="{{ $value }}" {{ !$optional ? 'required' : '' }} {{ $attributes }}>
   @else
     <input type="{{ $type }}" class="form-control" id="{{ $id }}" name="{{ $name }}"

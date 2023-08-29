@@ -1,24 +1,24 @@
-@props(['id', 'title', 'columns', 'create-button-type', 'create-route', 'modal-title', 'no-actions-field' => false])
+@props(['id', 'title' => '', 'columns', 'create-button-type', 'create-route', 'modal-title', 'no-actions-field' => false])
 
-<div class="card">
-  <div class="card-header">
-    <h4 class="card-title" style="min-height: unset">{{ $title ?? '' }}</h4>
+<x-card :$title>
+  <x-slot:card-header>
     @isset($createButtonType)
       <x-button.create :$id :type="$createButtonType" :route="$createRoute" />
     @endisset
 
     {{ $actions ?? '' }}
-  </div>
-  <div class="card-body">
-    <x-table.datatable :$id :$columns :no-actions="$noActionsField ?? false">
-      {{ $slot }}
-    </x-table.datatable>
-  </div>
+  </x-slot:card-header>
 
-  <div class="card-footer">
-    {{ $cardFooter ?? '' }}
-  </div>
-</div>
+  <x-table.datatable :$id :$columns :no-actions="$noActionsField ?? false">
+    {{ $slot }}
+  </x-table.datatable>
+
+  @isset($cardFooter)
+    <x-slot:card-footer>
+      {{ $cardFooter }}
+    </x-slot:card-footer>
+  @endisset
+</x-card>
 
 @if (isset($createButtonType) && $createButtonType === 'modal')
   <x-modal :$id :title="$modalTitle" no-footer>

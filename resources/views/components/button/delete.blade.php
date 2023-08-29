@@ -1,8 +1,8 @@
-@props(['id', 'route', 'size' => null, 'text', 'confirm' => 'Data terkait akan dihapus, apakah Anda ingin melanjutkan?'])
+@props(['id', 'route', 'size' => null, 'confirm' => 'Data terkait akan dihapus, apakah Anda ingin melanjutkan?'])
 
 <x-modal.trigger :$id color="danger" :$size>
   <i class="fas fa-trash"></i>
-  {{ $text ?? '' }}
+  {{ $slot }}
 </x-modal.trigger>
 
 <x-modal :$id :title="$confirm" no-footer>

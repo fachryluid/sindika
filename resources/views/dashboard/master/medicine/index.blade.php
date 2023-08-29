@@ -16,9 +16,8 @@
         :detail-route="route('master.medicine.show', $medicine->uuid)" :delete-route="route('master.medicine.destroy', $medicine->uuid)">
         <td>{{ $medicine->name }}</td>
         <td>
-          <a href="{{ asset('/storage/uploads/medicine/'.$medicine->image) }}">
-            <img src="{{ asset($medicine->image ? '/storage/uploads/medicine/'.$medicine->image : '/img/medicine-default.jpg') }}"
-              alt="{{ $medicine->name }}" class="img-fluid"
+          <a href="{{ $medicine->image }}">
+            <img src="{{ $medicine->image }}" alt="{{ $medicine->name }}" class="img-fluid"
               style="--size: 30px; max-height: var(--size); max-width: var(--size); object-fit: contain;">
           </a>
         </td>

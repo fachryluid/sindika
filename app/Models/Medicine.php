@@ -48,4 +48,10 @@ class Medicine extends Model
   {
     return $this->hasMany(Stock::class);
   }
+
+  // Fungsi untuk mengambil url gambar menggantikan $medicine->image
+  public function getImageAttribute($image): string
+  {
+    return asset($image ? '/storage/uploads/medicine/' . $image : '/img/medicine-default.jpg');
+  }
 }
