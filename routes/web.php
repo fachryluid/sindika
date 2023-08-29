@@ -40,7 +40,7 @@ Route::prefix('master')->name('master.')->group(function () {
   Route::resource('/category', CategoryController::class)->except(['create', 'edit'])->names('category');
   Route::resource('/medicine', MedicineController::class)->names('medicine');
   Route::resource('/supplier', SupplierController::class)->names('supplier');
-  Route::resource('/stock', StockController::class)->except(['destroy'])->names('stock');
+  Route::resource('/stock', StockController::class)->names('stock');
 });
 
 Route::prefix('calculation')->name('calculation.')->group(function () {

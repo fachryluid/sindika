@@ -11,7 +11,7 @@ class UpdateStockRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+      return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class UpdateStockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+          'supplier_id' => 'required|integer',
+          'medicine_id' => 'required|integer',
+          'quantity' => 'required|integer',
+          'order_cost' => 'required|string',
+          'storage_cost' => 'required|string',
+          'order_date' => 'required|date',
+          'expected_delivery' => 'required|date',
+          'price' => 'required|string',
+          'expired_date' => 'required|date'
         ];
     }
 }
