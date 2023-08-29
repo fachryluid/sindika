@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMedicineRequest;
 use App\Http\Requests\UpdateMedicineRequest;
+use App\Models\Category;
 use App\Models\Medicine;
+use App\Models\Type;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 use Throwable;
 
@@ -18,7 +21,10 @@ class MedicineController extends Controller
 
   public function create()
   {
-    return view('dashboard.master.medicine.create');
+    $units = Unit::all();
+    $types = Type::all();
+    $categories = Category::all();
+    return view('dashboard.master.medicine.create', compact('units', 'types', 'categories'));
   }
 
   public function store(StoreMedicineRequest $request)
@@ -46,8 +52,10 @@ class MedicineController extends Controller
   public function edit(Medicine $medicine)
   {
     try {
-      $medicine = Medicine::where('uuid', $medicine->uuid)->firstOrFail();
-      return view('dashboard.master.medicine.edit', compact('medicine'));
+      $units = Unit::all();
+      $types = Type::all();
+      $categories = Category::all();
+      return view('dashboard.master.medicine.edit', compact('medicine', 'units', 'types', 'categories'));
     } catch (Throwable $th) {
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan saat mengambil data!', $th->getMessage()]]);
@@ -57,7 +65,7 @@ class MedicineController extends Controller
   public function update(UpdateMedicineRequest $request, Medicine $medicine)
   {
     try {
-      Medicine::where('id', $medicine->id)->update($request->all());
+      $medicine->update($request->all());
       return redirect()->route('master.medicine.index')->with('success', 'Data berhasil diedit!');
     } catch (Throwable $th) {
       return redirect()->back()
