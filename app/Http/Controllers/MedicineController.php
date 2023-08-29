@@ -9,6 +9,7 @@ use App\Models\Medicine;
 use App\Models\Type;
 use App\Models\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Throwable;
 
 class MedicineController extends Controller
@@ -30,7 +31,10 @@ class MedicineController extends Controller
   public function store(StoreMedicineRequest $request)
   {
     try {
-      Medicine::create($request->all());
+      $filePath = Storage::put('public/uploads/medicine', $request->file('image'));
+      Medicine::create([
+        'image' => pathinfo($filePath, PATHINFO_BASENAME)
+      ] + $request->all());
       return redirect()->route('master.medicine.index')->with('success', 'Data berhasil disimpan!');
     } catch (Throwable $th) {
       return redirect()->back()
@@ -41,7 +45,7 @@ class MedicineController extends Controller
   public function show(Medicine $medicine)
   {
     try {
-      $medicine = Medicine::where('uuid', $medicine->uuid)->firstOrFail();
+      $medicine = Medicine::where('uuid', $medicine->uuid)->with('unit', 'type', 'category')->firstOrFail();
       return view('dashboard.master.medicine.show', compact('medicine'));
     } catch (Throwable $th) {
       return redirect()->back()
@@ -65,7 +69,14 @@ class MedicineController extends Controller
   public function update(UpdateMedicineRequest $request, Medicine $medicine)
   {
     try {
-      $medicine->update($request->all());
+      $fileName = $medicine->image;
+      if($request->file('image')) {
+        $filePath = Storage::put('public/uploads/medicine', $request->file('image'));
+        $fileName = pathinfo($filePath, PATHINFO_BASENAME);
+      }
+      $medicine->update([
+        'image' => $fileName
+      ] + $request->all());
       return redirect()->route('master.medicine.index')->with('success', 'Data berhasil diedit!');
     } catch (Throwable $th) {
       return redirect()->back()

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
+            $table->foreignId('medicine_id')->constrained('medicines')->onDelete('cascade');
+            $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
             $table->integer('quantity');
             $table->decimal('order_cost', $precision = 10, $scale = 2);
             $table->decimal('storage_cost', $precision = 10, $scale = 2);
