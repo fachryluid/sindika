@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="card-body">
-    <x-form action="{{ $action ?? '' }}" :$method :send-files="$sendFiles">
+    <x-form action="{{ $action ?? '' }}" :$method :send-files="$sendFiles ?? null">
       {{ $slot }}
 
       <div class="text-right">
