@@ -41,7 +41,7 @@ class CategoryController extends Controller
   public function update(UpdateCategoryRequest $request, Category $category)
   {
     try {
-      Category::where('id', $category->id)->update($request->all());
+      $category->update($request->all());
       return redirect()->route('master.category.index')->with('success', 'Data berhasil diedit!');
     } catch (Throwable $th) {
       return redirect()->back()

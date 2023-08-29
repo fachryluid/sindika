@@ -41,7 +41,7 @@ class UnitController extends Controller
   public function update(UpdateUnitRequest $request, Unit $unit)
   {
     try {
-      Unit::where('id', $unit->id)->update($request->all());
+      $unit->update($request->all());
       return redirect()->route('master.unit.index')->with('success', 'Data berhasil diedit!');
     } catch (Throwable $th) {
       return redirect()->back()

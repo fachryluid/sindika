@@ -41,7 +41,7 @@ class TypeController extends Controller
   public function update(UpdateTypeRequest $request, Type $type)
   {
     try {
-      Type::where('id', $type->id)->update($request->all());
+      $type->update($request->all());
       return redirect()->route('master.type.index')->with('success', 'Data berhasil diedit!');
     } catch (Throwable $th) {
       return redirect()->back()
