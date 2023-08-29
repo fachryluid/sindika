@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStockRequest;
+use App\Http\Requests\UpdateStockRequest;
 use App\Models\Medicine;
 use App\Models\Stock;
 use App\Models\Supplier;
@@ -51,6 +52,17 @@ class StockController extends Controller
     $suppliers = Supplier::all();
     $medicines = Medicine::all();
     return view('dashboard.master.stock.edit', compact('stock', 'suppliers', 'medicines'));
+  }
+
+  public function update(UpdateStockRequest $request, Stock $stock)
+  {
+    try {
+      $stock->update($request->all());
+      return redirect()->route('master.stock.index')->with('success', 'Data berhasil diedit!');
+    } catch (Throwable $th) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan saat mengedit data!', $th->getMessage()]]);
+    }
   }
 
   public function destroy(Stock $stock, Request $request)
