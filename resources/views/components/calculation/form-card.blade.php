@@ -1,4 +1,4 @@
-@props(['title', 'inputId', 'medicines' => []])
+@props(['title', 'inputId', 'medicines' => [], 'action', 'method'])
 
 <div class="card">
   <div class="card-header pb-0 flex-column align-items-start">
@@ -7,13 +7,13 @@
   </div>
 
   <div class="card-body pt-0">
-    <x-form>
+    <x-form action="{{ $action ?? '' }}" :$method>
       <div class="form-group">
         <div class="input-group">
-          <select id="{{ $inputId }}" class="custom-select">
+          <select id="{{ $inputId }}" name="uuid" class="custom-select">
             <option value="" hidden selected>Pilih obat</option>
             @foreach ($medicines as $medicine)
-              <option value="{{ $medicine->id }}">{{ $medicine->name }}</option>
+              <option value="{{ $medicine->uuid }}">{{ $medicine->name }}</option>
             @endforeach
           </select>
           <div class="input-group-append">

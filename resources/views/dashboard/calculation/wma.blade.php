@@ -17,5 +17,5 @@
     </p>
   </x-alert.icon>
 
-  <x-calculation.form-card title="Hitung WMA Per Tahun" inputId="wma-input" :$medicines />
+  <x-calculation.form-card :action="route('calculation.calculate.wma')" title="Hitung WMA Per Tahun" inputId="wma-input" :$medicines method="GET" />
 @endsection

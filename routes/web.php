@@ -46,4 +46,5 @@ Route::prefix('master')->name('master.')->group(function () {
 Route::prefix('calculation')->name('calculation.')->group(function () {
   Route::get('/eoq', [CalculationController::class, 'eoq'])->name('eoq');
   Route::get('/wma', [CalculationController::class, 'wma'])->name('wma');
+  Route::get('/wma/calculate', [CalculationController::class, 'calculate_wma'])->name('calculate.wma');
 });

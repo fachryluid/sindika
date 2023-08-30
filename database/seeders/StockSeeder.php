@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+use App\Models\Stock;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CategorySeeder extends Seeder
+class StockSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-      Category::factory()->count(2)->create();
+      Stock::factory()->count(2)->create();
     }
 }
