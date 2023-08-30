@@ -19,7 +19,7 @@
 
     @foreach ($units as $unit)
       <x-table.row :$loop :id="$unit->uuid"
-        delete-confirm="Data obat terkait satuan {{ $unit->name }} akan dihapus, apakah Anda ingin melanjutkan?"
+        delete-confirm="Data terkait satuan {{ $unit->name }} akan dihapus, apakah Anda ingin melanjutkan?"
         :detail-route="route('master.unit.show', $unit->uuid)" :delete-route="route('master.unit.destroy', $unit->uuid)" edit-route="#">
         <td>{{ $unit->name }}</td>
       </x-table.row>

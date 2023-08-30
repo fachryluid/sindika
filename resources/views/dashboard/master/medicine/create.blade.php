@@ -11,6 +11,10 @@
 
 @section('main')
   <x-card.form :action="route('master.medicine.store')" title="Tambah data obat bulan ini" :send-files="true">
+    <x-slot:card-header>
+      <x-button.back :route="route('master.medicine.index')" class="note-btn" />
+    </x-slot:card-header>
+
     <x-form.input type="text" name="name" label="Nama Obat" placeholder="Nama obat" />
     <x-form.input type="select" name="unit_id" label="Satuan" placeholder="Pilih Satuan">
       @foreach ($units as $unit)

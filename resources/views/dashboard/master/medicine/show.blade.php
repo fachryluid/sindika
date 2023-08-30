@@ -12,18 +12,10 @@
 @section('main')
   <x-card :title="$medicine->name">
     <x-slot:card-header>
-      <x-button.back :route="route('master.medicine.index')" class="note-btn">
-        Kembali
-      </x-button.back>
-
-      <x-button.edit :route="route('master.medicine.edit', $medicine->uuid)" class="note-btn">
-        Edit
-      </x-button.edit>
-
+      <x-button.back :route="route('master.medicine.index')" class="note-btn" />
+      <x-button.edit :route="route('master.medicine.edit', $medicine->uuid)" class="note-btn" />
       <x-button.delete :id="$medicine->uuid" :route="route('master.medicine.destroy', $medicine->uuid)" class="note-btn"
-        confirm="Data {{ $medicine->name }} akan dihapus, apakah Anda ingin melanjutkan?">
-        Hapus
-      </x-button.delete>
+        confirm="Data {{ $medicine->name }} akan dihapus, apakah Anda ingin melanjutkan?" />
     </x-slot:card-header>
 
     <x-grid.row class="justify-content-center">

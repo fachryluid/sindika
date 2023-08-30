@@ -3,10 +3,13 @@
 <x-card :$title>
   <x-slot:card-header>
     @isset($createButtonType)
-      <x-button.create :$id :type="$createButtonType" :route="$createRoute" />
+      <x-button.create :$id :type="$createButtonType" :route="$createRoute">
+        Tambah
+      </x-button.create>
     @endisset
 
     {{ $actions ?? '' }}
+    {{ $cardHeader ?? '' }}
   </x-slot:card-header>
 
   <x-table.datatable :$id :$columns :no-actions="$noActionsField ?? false">

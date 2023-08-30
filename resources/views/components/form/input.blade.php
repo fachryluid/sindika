@@ -7,8 +7,8 @@
 
   @switch($type)
     @case('select')
-      <select class="form-control" id="{{ $id }}" name="{{ $name }}" {{ !$optional ? 'required' : '' }}
-        {{ $attributes }}>
+      <select class="form-control @error($name) is-invalid @enderror" id="{{ $id }}" name="{{ $name }}"
+        {{ !$optional ? 'required' : '' }} {{ $attributes }}>
         @isset($placeholder)
           <option value="" hidden>{{ $placeholder }}</option>
         @endisset
@@ -17,8 +17,8 @@
     @break
 
     @case('image')
-      <input type="file" class="form-control" id="{{ $id }}" name="{{ $name }}" accept="image/*"
-        {{ !$optional ? 'required' : '' }} {{ $attributes }}>
+      <input type="file" class="form-control @error($name) is-invalid @enderror" id="{{ $id }}"
+        name="{{ $name }}" accept="image/*" {{ !$optional ? 'required' : '' }} {{ $attributes }}>
     @break
 
     @case('currency')
@@ -46,10 +46,14 @@
     @break
 
     @default
-      <input type="{{ $type }}" class="form-control" id="{{ $id }}" name="{{ $name }}"
-        value="{{ $value }}" placeholder="{{ $placeholder ?? '' }}" {{ !$optional ? 'required' : '' }}
-        {{ $attributes }}>
+      <input type="{{ $type }}" class="form-control @error($name) is-invalid @enderror" id="{{ $id }}"
+        name="{{ $name }}" value="{{ $value }}" placeholder="{{ $placeholder ?? '' }}"
+        {{ !$optional ? 'required' : '' }} {{ $attributes }}>
   @endswitch
+
+  @error($name)
+    <div class="invalid-feedback">{{ $message }}</div>
+  @enderror
 </div>
 
 @if ($type === 'currency' || $type === 'phone')
@@ -74,7 +78,7 @@
 
 @if ($type === 'phone')
   @pushonce('js')
-    <!-- FIXME -->
+    <!-- FIXME: -->
     {{-- tampaknya yang Indonesia kayak ga ada format --}}
     <script src="{{ asset('/js/cleave-phone.id.js') }}"></script>
     {{-- jadinya saya pake india --}}

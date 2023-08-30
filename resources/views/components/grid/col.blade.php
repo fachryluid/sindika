@@ -1,6 +1,22 @@
-@props(['width' => 0, 'md'])
+@props(['width' => 0, 'sm' => 0, 'md' => 0, 'lg' => 0])
 
-<div
-  {{ $attributes->merge(['class' => 'col' . ($width > 0 ? "-$width" : '') . (isset($md) && $md > 0 ? " col-md-$md" : '')]) }}>
+@php
+  $class = 'col';
+  
+  if ($width > 0) {
+      $class .= "-$width";
+  }
+  if ($sm > 0) {
+      $class .= " col-sm-$sm";
+  }
+  if ($md > 0) {
+      $class .= " col-md-$md";
+  }
+  if ($lg > 0) {
+      $class .= " col-lg-$lg";
+  }
+@endphp
+
+<div {{ $attributes->merge(['class' => $class]) }}>
   {{ $slot }}
 </div>

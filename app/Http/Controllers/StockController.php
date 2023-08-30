@@ -14,7 +14,7 @@ class StockController extends Controller
 {
   public function index()
   {
-    $stocks = Stock::with('stock', 'supplier');
+    $stocks = Stock::all();
     return view('dashboard.master.stock.index', compact('stocks'));
   }
 
@@ -39,7 +39,6 @@ class StockController extends Controller
   public function show(Stock $stock)
   {
     try {
-      $stock = $stock->with('stock', 'supplier')->firstOrFail();
       return view('dashboard.master.stock.show', compact('stock'));
     } catch (Throwable $th) {
       return redirect()->back()
