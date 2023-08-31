@@ -23,10 +23,16 @@ class CalculationController extends Controller
   {
     try {
       $medicine = Medicine::where('uuid', $request->uuid)->with('stocks.sales')->firstOrFail();
-      $sales = $medicine->stocks[0]->sales;
-      $wma2Periode = calculateWMA($sales, 2);
-      $wma3Periode = calculateWMA($sales, 3);
-      $wma4Periode = calculateWMA($sales, 4);
+      $sales = collect([]);
+      foreach ($medicine->stocks as $stock) {
+        foreach ($stock->sales as $sale) {
+          $sales[] = $sale;
+        }
+      }
+      $sortedSales = $sales->sortBy('date')->values();
+      $wma2Periode = calculateWMA($sortedSales, 2);
+      $wma3Periode = calculateWMA($sortedSales, 3);
+      $wma4Periode = calculateWMA($sortedSales, 4);
       return view('dashboard.calculation.wma-result', compact('wma2Periode', 'wma3Periode', 'wma4Periode', 'medicine'));
     } catch (\Throwable $th) {
       return redirect()->back()
