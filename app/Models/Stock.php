@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Stock extends Model
 {
@@ -42,5 +43,26 @@ class Stock extends Model
   public function sales(): HasMany
   {
     return $this->hasMany(Sale::class);
+  }
+
+  protected function orderCost(): Attribute
+  {
+    return Attribute::make(
+      set: fn(string $value) => (int) str_replace(',', '', $value),
+    );
+  }
+
+  protected function storageCost(): Attribute
+  {
+    return Attribute::make(
+      set: fn(string $value) => (int) str_replace(',', '', $value),
+    );
+  }
+
+  protected function price(): Attribute
+  {
+    return Attribute::make(
+      set: fn(string $value) => (int) str_replace(',', '', $value),
+    );
   }
 }
