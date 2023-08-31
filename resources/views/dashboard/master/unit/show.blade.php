@@ -11,21 +11,16 @@
 
 @section('main')
   <x-card.table id="unit" title="Data Satuan Obat {{ $unit->name }}" :columns="['Nama Obat']" no-actions-field>
+    <x-slot:card-header>
+      <x-button.back :route="route('master.unit.index')" class="note-btn" />
+      <x-button.delete :id="$unit->uuid" :route="route('master.unit.destroy', $unit->uuid)" class="note-btn"
+        confirm="Data terkait satuan {{ $unit->name }} akan dihapus, apakah Anda ingin melanjutkan?" />
+    </x-slot:card-header>
+
     @foreach ($unit->medicines as $medicine)
       <x-table.row :$loop>
         <td>{{ $medicine->name }}</td>
       </x-table.row>
     @endforeach
-
-    <x-slot:card-footer>
-      <div class="text-right">
-        <x-button type="link" route="{{ route('master.unit.index') }}" color="secondary" class="mr-2">
-          <i class="fas fa-arrow-left"></i>
-          Kembali
-        </x-button>
-
-        <x-button.delete :id="$unit->uuid" :route="route('master.unit.destroy', $unit->uuid)" text="Hapus Data Satuan Ini" />
-      </div>
-    </x-slot:card-footer>
   </x-card.table>
 @endsection

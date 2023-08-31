@@ -31,9 +31,13 @@ class MedicineController extends Controller
   public function store(StoreMedicineRequest $request)
   {
     try {
-      $filePath = Storage::put('public/uploads/medicine', $request->file('image'));
+      $image = null;
+      if (isset($request->image)) {
+        $filePath = Storage::put('public/uploads/medicine', $request->file('image'));
+        $image = pathinfo($filePath, PATHINFO_BASENAME);
+      }
       Medicine::create([
-        'image' => pathinfo($filePath, PATHINFO_BASENAME)
+        'image' => $image
       ] + $request->all());
       return redirect()->route('master.medicine.index')->with('success', 'Data berhasil disimpan!');
     } catch (Throwable $th) {
@@ -70,7 +74,7 @@ class MedicineController extends Controller
   {
     try {
       $fileName = $medicine->image;
-      if($request->file('image')) {
+      if ($request->file('image')) {
         $filePath = Storage::put('public/uploads/medicine', $request->file('image'));
         $fileName = pathinfo($filePath, PATHINFO_BASENAME);
       }

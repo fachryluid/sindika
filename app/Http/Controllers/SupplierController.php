@@ -35,7 +35,6 @@ class SupplierController extends Controller
   public function show(Supplier $supplier)
   {
     try {
-      $supplier = Supplier::where('uuid', $supplier->uuid)->firstOrFail();
       return view('dashboard.master.supplier.show', compact('supplier'));
     } catch (Throwable $th) {
       return redirect()->back()
@@ -45,7 +44,7 @@ class SupplierController extends Controller
 
   public function edit(Supplier $supplier)
   {
-    return view('dashboard.master.supplier.edit');
+    return view('dashboard.master.supplier.edit', compact('supplier'));
   }
 
   public function update(UpdateSupplierRequest $request, Supplier $supplier)

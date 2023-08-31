@@ -16,7 +16,7 @@
         :detail-route="route('master.supplier.show', $supplier->uuid)" :delete-route="route('master.supplier.destroy', $supplier->uuid)" :edit-route="route('master.supplier.edit', $supplier->uuid)">
         <td>{{ $supplier->name }}</td>
         <td>{{ $supplier->address }}</td>
-        <td>{{ $supplier->phone }}</td>
+        <td>{{ $supplier->phone_number }}</td>
       </x-table.row>
     @endforeach
   </x-card.table>
