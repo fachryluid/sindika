@@ -25,7 +25,7 @@
       @endforeach
       <tr>
         <td class="text-center">{{ count($wma2Periode->wmaPeriodeCalc)+1 }}</td>
-        <td>7/2023</td>
+        <td>NEXT MONTH</td>
         <td>?</td>
         <td>{{ $wma2Periode->wmaPeriodeResult->nextFt }}</td>
         <th class="bg-secondary">JUMLAH</th>
@@ -70,7 +70,7 @@
       @endforeach
       <tr>
         <td class="text-center">{{ count($wma3Periode->wmaPeriodeCalc)+1 }}</td>
-        <td>7/2023</td>
+        <td>NEXT MONTH</td>
         <td>?</td>
         <td>{{ $wma3Periode->wmaPeriodeResult->nextFt }}</td>
         <th class="bg-secondary">JUMLAH</th>
@@ -115,7 +115,7 @@
       @endforeach
       <tr>
         <td class="text-center">{{ count($wma4Periode->wmaPeriodeCalc)+1 }}</td>
-        <td>7/2023</td>
+        <td>NEXT MONTH</td>
         <td>?</td>
         <td>{{ $wma4Periode->wmaPeriodeResult->nextFt }}</td>
         <th class="bg-secondary">JUMLAH</th>

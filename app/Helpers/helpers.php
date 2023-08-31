@@ -67,7 +67,7 @@ if (!function_exists('calculateWMA')) {
         $percentError = number_format(abs($error) / $sales[$i]->quantity_sold * 100, 2);
       }
       $wmaPeriode->wmaPeriodeCalc[$i] = (object) [
-        'date' => $sales[$i]->month . '/' . $sales[$i]->year,
+        'date' => strtoupper(date('F/Y', strtotime($sales[$i]->date))),
         'quantitySold' => $sales[$i]->quantity_sold,
         'ft' => $ft,
         'error' => $error,
