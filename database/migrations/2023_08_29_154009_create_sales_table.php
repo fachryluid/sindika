@@ -17,8 +17,6 @@ return new class extends Migration
             $table->foreignId('stock_id')->constrained('stocks')->onDelete('cascade');
             $table->integer('quantity_sold');
             $table->date('date');
-            $table->unsignedTinyInteger('month');
-            $table->year('year');
             $table->timestamps();
         });
     }

@@ -49,16 +49,17 @@
               'Satuan' => ['url' => route('master.unit.index'), 'icon' => 'square'],
               'Jenis' => ['url' => route('master.type.index'), 'icon' => 'th-large'],
               'Kategori' => ['url' => route('master.category.index'), 'icon' => 'th'],
+              'Supplier' => ['url' => route('master.supplier.index'), 'icon' => 'hand-holding-heart'],
               'Obat' => ['url' => route('master.medicine.index'), 'icon' => 'pills'],
               'Stok' => ['url' => route('master.stock.index'), 'icon' => 'boxes'],
-              'Supplier' => ['url' => route('master.supplier.index'), 'icon' => 'hand-holding-heart'],
+              'Penjualan' => ['url' => route('master.sale.index'), 'icon' => 'money-bill'],
           ],
-      
+
           'Perhitungan' => [
               'WMA' => ['url' => route('calculation.wma'), 'icon' => 'square-root-alt'],
               'EOQ' => ['url' => route('calculation.eoq'), 'icon' => 'square-root-alt'],
           ],
-      
+
           'Laporan' => [
               'Obat' => ['url' => '#', 'icon' => 'pills'],
               'Peramalan' => ['url' => '#', 'icon' => 'file-alt'],

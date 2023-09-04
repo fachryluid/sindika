@@ -87,6 +87,12 @@ class SaleSeeder extends Seeder
           'year' => 2023,
           'sold' => 58
         ],
+        (object) [
+          'date' => '2022-08-01',
+          'month' => 8,
+          'year' => 2022,
+          'sold' => 44
+        ],
       ];
       $med2 = [
         (object) [
@@ -168,14 +174,6 @@ class SaleSeeder extends Seeder
           'sold' => 18
         ],
       ];
-      $med3 = [
-        (object) [
-          'date' => '2022-08-01',
-          'month' => 8,
-          'year' => 2022,
-          'sold' => 44
-        ],
-      ];
       foreach ($med1 as $key) {
         Sale::factory()->create([
           'stock_id' => 1,
@@ -188,15 +186,6 @@ class SaleSeeder extends Seeder
       foreach ($med2 as $key) {
         Sale::factory()->create([
           'stock_id' => 2,
-          'date' => $key->date,
-          'month' => $key->month,
-          'year' => $key->year,
-          'quantity_sold' => $key->sold
-        ]);
-      }
-      foreach ($med3 as $key) {
-        Sale::factory()->create([
-          'stock_id' => 3,
           'date' => $key->date,
           'month' => $key->month,
           'year' => $key->year,

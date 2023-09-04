@@ -7,9 +7,9 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UnitController;
-use App\Models\Unit;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\ExcelController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,10 +41,16 @@ Route::prefix('master')->name('master.')->group(function () {
   Route::resource('/medicine', MedicineController::class)->names('medicine');
   Route::resource('/supplier', SupplierController::class)->names('supplier');
   Route::resource('/stock', StockController::class)->names('stock');
+  Route::resource('/sale', SaleController::class)->names('sale');
+  Route::post('/sale/cetak-format', [SaleController::class, 'cetak_format'])->name('sale.cetak-format');
 });
 
 Route::prefix('calculation')->name('calculation.')->group(function () {
   Route::get('/eoq', [CalculationController::class, 'eoq'])->name('eoq');
   Route::get('/wma', [CalculationController::class, 'wma'])->name('wma');
   Route::get('/wma/calculate', [CalculationController::class, 'calculate_wma'])->name('calculate.wma');
+});
+
+Route::prefix('excel')->name('excel.')->group(function () {
+  // Route::post('/cetak-format', [ExcelController::class, 'format'])->name('cetak-format');
 });

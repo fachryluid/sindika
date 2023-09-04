@@ -17,5 +17,44 @@
     </p>
   </x-alert.icon>
 
-  <x-calculation.form-card title="Hitung EOQ Per Tahun" inputId="eoq-input" :$medicines />
+  <table class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Nama Obat</th>
+        <th scope="col">Jumlah Kebutuhan Obat/Tahun</th>
+        <th scope="col">Harga</th>
+        <th scope="col">Biaya Pesan</th>
+        <th scope="col">Biaya Simpan</th>
+        <th scope="col">EOQ</th>
+        <th scope="col">Frekuensi Pemesanan</th>
+        <th scope="col">Total Biaya Pesan</th>
+        <th scope="col">Total Biaya Simpan</th>
+        <th scope="col">Total Biaya Persediaan</th>
+        <th scope="col">Safety Stock</th>
+        <th scope="col">Reorder Point</th>
+        <th scope="col">Lead Time / Waktu Tunggu Obat</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($eoqs as $eoq)
+      <tr>
+        <td>{{ $loop->iteration }}</td>
+        <td>{{ $eoq->medicine }}</td>
+        <td>{{ $eoq->_R }}</td>
+        <td>{{ number_format($eoq->price, 0, '.') }}</td>
+        <td>{{ number_format($eoq->orderCost, 0, '.') }}</td>
+        <td>{{ number_format($eoq->storageCost, 0, '.') }}</td>
+        <td>{{ $eoq->_EOQ }}</td>
+        <td>{{ $eoq->orderFrequency }}</td>
+        <td>{{ number_format($eoq->_O, 0, '.') }}</td>
+        <td>{{ number_format($eoq->_C, 0, '.') }}</td>
+        <td>{{ number_format($eoq->stockTotalCost, 0, '.') }}</td>
+        <td>{{ $eoq->_SS }}</td>
+        <td>{{ $eoq->_ROP }}</td>
+        <td>{{ $eoq->_LT }}</td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
 @endsection
