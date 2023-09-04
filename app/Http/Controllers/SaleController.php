@@ -61,10 +61,11 @@ class SaleController extends Controller
   public function import(Request $request)
   {
     try {
-      if (!isset($request->file)) {
+      if (!isset($request->files)) {
         throw new \Exception("File tidak ditemukan!");
       }
-      $sales = Excel::toCollection(new SalesImport, $request->file);
+      $sales = Excel::import(new SalesImport, $request->file);
+      dump('tesatyts');
       dd($sales);
     } catch (\Exception $e) {
       dd($e);

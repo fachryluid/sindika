@@ -59,7 +59,7 @@
   </form>
 </x-modal>
 <x-modal id="import" title="Import Penjualan" :no-footer="true">
-  <form action="{{ route('master.sale.import') }}" method="POST">
+  <form action="{{ route('master.sale.import') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label for="file">Pilih File</label>
