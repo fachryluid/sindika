@@ -6,6 +6,7 @@ use App\Models\Sale;
 use App\Models\Stock;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Carbon\Carbon;
 
 class SalesImport implements ToCollection
 {
@@ -37,9 +38,15 @@ class SalesImport implements ToCollection
       ]);
     }
 
-    foreach ($salesData as $sale) {
-      $stock_id = Stock::where('uuid', $sale->uuid)->get('id');
-      dd($stock_id);
+    foreach ($salesData as $data) {
+      $stock_id = Stock::where('uuid', $data->uuid)->firstOrFail()->id;
+      foreach ($data->sales as $sale) {
+        Sale::create([
+          'stock_id' => $stock_id,
+          'quantity_sold' => $sale->sold,
+          'date' => Carbon::parse($sale->date)
+        ]);
+      }
     }
   }
 }

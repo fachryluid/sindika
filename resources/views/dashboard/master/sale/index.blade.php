@@ -9,7 +9,7 @@
 @section('title', 'Penjualan')
 
 @section('main')
-<x-card.table id="sale" :columns="['Nama Obat', 'Stok Awal', 'Stok Terjual', 'Stok Tersisa']">
+<x-card.table id="sale" :columns="['Nama Obat', 'Stok Awal', 'Stok Terjual', 'Stok Tersisa']" :no-actions-field="true">
   <x-slot:actions>
     <x-button type="button" class="note-btn mr-2" data-toggle="modal" data-target="#modal-cetak-format" role="button">
       <i class="fa fa-file-excel"></i>
@@ -19,20 +19,20 @@
       <i class="fas fa-file-excel"></i>
       Import
     </x-button>
-    <x-button type="link" route="#" color="danger" class="note-btn mr-2">
+    {{-- <x-button type="link" route="#" color="danger" class="note-btn mr-2">
       <i class="fas fa-file-excel"></i>
       Import
-    </x-button>
+    </x-button> --}}
   </x-slot:actions>
 
-  {{-- @foreach ($sales as $sale)
-      <x-table.row :$loop :id="$sale->uuid"
-        delete-confirm="Data terkait satuan {{ $sale->name }} akan dihapus, apakah Anda ingin melanjutkan?"
-  :detail-route="route('master.sale.show', $sale->uuid)" :delete-route="route('master.sale.destroy', $sale->uuid)"
-  edit-route="#">
-  <td>{{ $sale->name }}</td>
-  </x-table.row>
-  @endforeach --}}
+  @foreach ($medicines as $medicine)
+    <x-table.row :$loop :id="$medicine->uuid">
+      <td>{{ $medicine->medicineName }}</td>
+      <td>{{ $medicine->initialStock }}</td>
+      <td>{{ $medicine->quantitySold }}</td>
+      <td>{{ $medicine->currentStock }}</td>
+    </x-table.row>
+  @endforeach
 
 </x-card.table>
 <x-modal id="cetak-format" title="Cetak Format" :no-footer="true">

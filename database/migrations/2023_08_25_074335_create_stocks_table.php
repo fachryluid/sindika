@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->bigInteger('order_cost');
             $table->bigInteger('storage_cost');
-            $table->datetime('order_date');
+            $table->date('order_date');
             $table->date('expected_delivery');
             $table->bigInteger('price');
             $table->date('expired_date');

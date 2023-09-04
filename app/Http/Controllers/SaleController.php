@@ -14,8 +14,23 @@ class SaleController extends Controller
 {
   public function index()
   {
-    $medicines = Medicine::with('stocks.sales')->get();
-    // dd($medicines->toArray());
+    $medicines = collect([]);
+    $quantitySold = 0;
+    $data = Medicine::with('stocks.sales')->get();
+    foreach ($data as $value) {
+      foreach ($value->stocks as $stock) {
+        foreach ($stock->sales as $sale) {
+          $quantitySold += $sale->quantity_sold;
+        }
+      }
+      $medicines->push((object) [
+        'uuid' => $value->uuid,
+        'medicineName' => $value->name,
+        'initialStock' => $stock->quantity,
+        'quantitySold' => $quantitySold,
+        'currentStock' => $stock->quantity - $quantitySold
+      ]);
+    }
     return view('dashboard.master.sale.index', compact('medicines'));
   }
 
@@ -33,7 +48,7 @@ class SaleController extends Controller
       $months = collect([]);
       $currentDate = $startDate->copy();
       while ($currentDate->lte($finishDate)) {
-        $formattedDate = $currentDate->format('m-d-Y');
+        $formattedDate = $currentDate->format('Y-m-d');
         $months->push($formattedDate);
         $currentDate->addMonth();
       }
@@ -64,11 +79,9 @@ class SaleController extends Controller
       if (!isset($request->files)) {
         throw new \Exception("File tidak ditemukan!");
       }
-      $sales = Excel::import(new SalesImport, $request->file);
-      dump('tesatyts');
-      dd($sales);
+      Excel::import(new SalesImport, $request->file);
+      return redirect(route('master.sale.index'))->with('success', 'Data berhasil disimpan!');
     } catch (\Exception $e) {
-      dd($e);
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan', $e->getMessage()]]);
     }

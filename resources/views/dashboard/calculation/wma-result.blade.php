@@ -10,10 +10,26 @@
 @section('title', 'Hasil Peramalan WMA')
 
 @section('main')
-  <x-card.table id="wma-result-2-periode" :title="$medicine->name" :columns="['Bulan/Tahun', 'Penjualan Aktual', 'Ramalan 2 Periode', 'Error', '[Error]', 'Error^2', '% Error']" :no-actions-field="true">
-    <h4 class="text-center text-primary">RAMALAN 2 PERIODE</h4>
-    @foreach ($wma2Periode->wmaPeriodeCalc as $wmaPeriodeCalc)
-      <x-table.row :$loop>
+<div class="card">
+  <div class="card-body">
+  <h5 class="text-center text-primary mb-3">RAMALAN 2 PERIODE</h5>
+  <table class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th class="text-center">No.</th>
+        <th>Bulan/Tahun</th>
+        <th>Penjualan Aktual</th>
+        <th>Ramalan 3 Periode</th>
+        <th>Error</th>
+        <th>[Error]</th>
+        <th>Error^2</th>
+        <th>% Error</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($wma2Periode->wmaPeriodeCalc as $wmaPeriodeCalc)
+      <tr>
+        <td class="text-center">{{ $loop->iteration }}</td>
         <td>{{ $wmaPeriodeCalc->date }}</td>
         <td>{{ $wmaPeriodeCalc->quantitySold }}</td>
         <td>{{ $wmaPeriodeCalc->ft }}</td>
@@ -21,7 +37,7 @@
         <td>{{ $wmaPeriodeCalc->absError }}</td>
         <td>{{ $wmaPeriodeCalc->squareError }}</td>
         <td>{{ $wmaPeriodeCalc->percentError }}</td>
-      </x-table.row>
+      </tr>
       @endforeach
       <tr>
         <td class="text-center">{{ count($wma2Periode->wmaPeriodeCalc)+1 }}</td>
@@ -53,7 +69,10 @@
         <th class="bg-warning">MSE</th>
         <th class="bg-warning">MAPE</th>
       </tr>
-  </x-card.table>
+    </tbody>
+  </table>
+  </div>
+</div>
 
   <x-card.table id="wma-result-3-periode" :title="$medicine->name" :columns="['Bulan/Tahun', 'Penjualan Aktual', 'Ramalan 3 Periode', 'Error', '[Error]', 'Error^2', '% Error']" :no-actions-field="true">
     <h4 class="text-center text-primary">RAMALAN 3 PERIODE</h4>
