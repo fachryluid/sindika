@@ -43,6 +43,7 @@ Route::prefix('master')->name('master.')->group(function () {
   Route::resource('/stock', StockController::class)->names('stock');
   Route::resource('/sale', SaleController::class)->names('sale');
   Route::post('/sale/cetak-format', [SaleController::class, 'cetak_format'])->name('sale.cetak-format');
+  Route::post('/sale/import', [SaleController::class, 'import'])->name('sale.import');
 });
 
 Route::prefix('calculation')->name('calculation.')->group(function () {

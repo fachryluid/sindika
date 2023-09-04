@@ -17,11 +17,11 @@ return new class extends Migration
             $table->foreignId('medicine_id')->constrained('medicines')->onDelete('cascade');
             $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
             $table->integer('quantity');
-            $table->decimal('order_cost', $precision = 10, $scale = 2);
-            $table->decimal('storage_cost', $precision = 10, $scale = 2);
+            $table->bigInteger('order_cost');
+            $table->bigInteger('storage_cost');
             $table->datetime('order_date');
             $table->date('expected_delivery');
-            $table->decimal('price', $precision = 10, $scale = 2);
+            $table->bigInteger('price');
             $table->date('expired_date');
             $table->timestamps();
         });

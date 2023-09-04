@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\FormatPenjualanExport;
+use App\Imports\SalesImport;
 
 class SaleController extends Controller
 {
@@ -40,20 +41,33 @@ class SaleController extends Controller
       $stocks = Stock::with(['medicine', 'supplier'])->get();
 
       $salesData = collect([]);
-      foreach ($months as $month) {
-        foreach ($stocks as $stock) {
-          $sale = (object) [
-            'uuid' => $stock->uuid,
-            'medicine' => $stock->medicine->name,
-            'supplier' => $stock->supplier->name
-          ];
-        }
-        $salesData->put($month, $sale);
+
+      foreach ($stocks as $stock) {
+        $sale = (object) [
+          'uuid' => $stock->uuid,
+          'medicine' => $stock->medicine->name,
+          'supplier' => $stock->supplier->name
+        ];
+        $salesData->push($sale);
       }
 
-      return Excel::download(new FormatPenjualanExport($salesData), date("d-m-Y-H-i-s").'-Format-Penjualan.xlsx');
-
+      return Excel::download(new FormatPenjualanExport($salesData, $months), date("d-m-Y-H-i-s") . '-Format-Penjualan.xlsx');
     } catch (\Exception $e) {
+      return redirect()->back()
+        ->withErrors(['message' => ['Terjadi kesalahan', $e->getMessage()]]);
+    }
+  }
+
+  public function import(Request $request)
+  {
+    try {
+      if (!isset($request->file)) {
+        throw new \Exception("File tidak ditemukan!");
+      }
+      $sales = Excel::toCollection(new SalesImport, $request->file);
+      dd($sales);
+    } catch (\Exception $e) {
+      dd($e);
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan', $e->getMessage()]]);
     }

@@ -15,7 +15,7 @@
       <i class="fa fa-file-excel"></i>
       Cetak Format
     </x-button>
-    <x-button type="link" route="#" color="success" class="note-btn mr-2">
+    <x-button type="button" color="success" class="note-btn mr-2" data-toggle="modal" data-target="#modal-import" role="button">
       <i class="fas fa-file-excel"></i>
       Import
     </x-button>
@@ -51,6 +51,19 @@
           <input type="date" class="form-control " id="finish_date" name="finish_date" placeholder="Tanggal Selesai" required />
         </div>
       </div>
+    </div>
+    <div class="text-right">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+      <button type="submit" class="btn btn-primary ml-2">Simpan</button>
+    </div>
+  </form>
+</x-modal>
+<x-modal id="import" title="Import Penjualan" :no-footer="true">
+  <form action="{{ route('master.sale.import') }}" method="POST">
+    @csrf
+    <div class="form-group">
+      <label for="file">Pilih File</label>
+      <input type="file" class="form-control " id="file" name="file" required/>
     </div>
     <div class="text-right">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
