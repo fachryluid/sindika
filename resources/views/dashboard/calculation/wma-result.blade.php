@@ -208,9 +208,9 @@
   </div>
 </div>
 <div class="card">
-  <div class="card-body">
-    <p>Berdasarkan perhitungan dari ketiga tabel periode tersebut, peramalan yang dianjurkan untuk digunakan adalah </p>
-    <p></p>
+  <div class="card-body px-5">
+    <h6 class="text-center">Berdasarkan perhitungan dari ketiga tabel periode tersebut, peramalan yang dianjurkan untuk digunakan adalah </h6>
+    <h5 class="bg-primary text-center text-white font-bold py-1">{{ $recomendation }}</h5>
   </div>
 </div>
 {{-- <div class="card">

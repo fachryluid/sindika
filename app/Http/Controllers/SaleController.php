@@ -15,9 +15,9 @@ class SaleController extends Controller
   public function index()
   {
     $medicines = collect([]);
-    $quantitySold = 0;
     $data = Medicine::with('stocks.sales')->get();
     foreach ($data as $value) {
+      $quantitySold = 0;
       foreach ($value->stocks as $stock) {
         foreach ($stock->sales as $sale) {
           $quantitySold += $sale->quantity_sold;
