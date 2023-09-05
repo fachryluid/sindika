@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Supplier extends Model
 {
@@ -31,5 +32,12 @@ class Supplier extends Model
   public function stocks(): HasMany
   {
     return $this->hasMany(Stock::class);
+  }
+
+  protected function phoneNumber(): Attribute
+  {
+    return Attribute::make(
+      set: fn(string $value) => str_replace('-', '', $value),
+    );
   }
 }

@@ -16,7 +16,7 @@ class MedicineController extends Controller
 {
   public function index()
   {
-    $medicines = Medicine::all();
+    $medicines = Medicine::with(['unit', 'type', 'category'])->get();
     return view('dashboard.master.medicine.index', compact('medicines'));
   }
 

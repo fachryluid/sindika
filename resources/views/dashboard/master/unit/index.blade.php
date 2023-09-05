@@ -10,12 +10,6 @@
 
 @section('main')
   <x-card.table id="unit" :columns="['Nama Satuan']" create-button-type="modal" :create-route="route('master.unit.store')" modal-title="Tambah Satuan Obat">
-    <x-slot:actions>
-      <x-button type="link" route="#" color="success" class="note-btn">
-        <i class="fas fa-file-excel"></i>
-        Export Excel
-      </x-button>
-    </x-slot:actions>
 
     @foreach ($units as $unit)
       <x-table.row :$loop :id="$unit->uuid"

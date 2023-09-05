@@ -12,6 +12,12 @@
 @section('main')
 <div class="card">
   <div class="card-body">
+    <h4 class="text-center text-primary">{{ $medicine->name }}</h4>
+  </div>
+</div>
+  
+<div class="card">
+  <div class="card-body">
   <h5 class="text-center text-primary mb-3">RAMALAN 2 PERIODE</h5>
   <table class="table table-hover table-sm">
     <thead>
@@ -19,7 +25,7 @@
         <th class="text-center">No.</th>
         <th>Bulan/Tahun</th>
         <th>Penjualan Aktual</th>
-        <th>Ramalan 3 Periode</th>
+        <th>Ramalan 2 Periode</th>
         <th>Error</th>
         <th>[Error]</th>
         <th>Error^2</th>
@@ -74,10 +80,26 @@
   </div>
 </div>
 
-  <x-card.table id="wma-result-3-periode" :title="$medicine->name" :columns="['Bulan/Tahun', 'Penjualan Aktual', 'Ramalan 3 Periode', 'Error', '[Error]', 'Error^2', '% Error']" :no-actions-field="true">
-    <h4 class="text-center text-primary">RAMALAN 3 PERIODE</h4>
-    @foreach ($wma3Periode->wmaPeriodeCalc as $wmaPeriodeCalc)
-      <x-table.row :$loop>
+<div class="card">
+  <div class="card-body">
+  <h5 class="text-center text-primary mb-3">RAMALAN 3 PERIODE</h5>
+  <table class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th class="text-center">No.</th>
+        <th>Bulan/Tahun</th>
+        <th>Penjualan Aktual</th>
+        <th>Ramalan 3 Periode</th>
+        <th>Error</th>
+        <th>[Error]</th>
+        <th>Error^2</th>
+        <th>% Error</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($wma3Periode->wmaPeriodeCalc as $wmaPeriodeCalc)
+      <tr>
+        <td class="text-center">{{ $loop->iteration }}</td>
         <td>{{ $wmaPeriodeCalc->date }}</td>
         <td>{{ $wmaPeriodeCalc->quantitySold }}</td>
         <td>{{ $wmaPeriodeCalc->ft }}</td>
@@ -85,7 +107,7 @@
         <td>{{ $wmaPeriodeCalc->absError }}</td>
         <td>{{ $wmaPeriodeCalc->squareError }}</td>
         <td>{{ $wmaPeriodeCalc->percentError }}</td>
-      </x-table.row>
+      </tr>
       @endforeach
       <tr>
         <td class="text-center">{{ count($wma3Periode->wmaPeriodeCalc)+1 }}</td>
@@ -117,12 +139,31 @@
         <th class="bg-warning">MSE</th>
         <th class="bg-warning">MAPE</th>
       </tr>
-  </x-card.table>
+    </tbody>
+  </table>
+  </div>
+</div>
 
-  <x-card.table id="wma-result-4-periode" :title="$medicine->name" :columns="['Bulan/Tahun', 'Penjualan Aktual', 'Ramalan 4 Periode', 'Error', '[Error]', 'Error^2', '% Error']" :no-actions-field="true">
-    <h4 class="text-center text-primary">RAMALAN 4 PERIODE</h4>
-    @foreach ($wma4Periode->wmaPeriodeCalc as $wmaPeriodeCalc)
-      <x-table.row :$loop>
+<div class="card">
+  <div class="card-body">
+  <h5 class="text-center text-primary mb-3">RAMALAN 4 PERIODE</h5>
+  <table class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th class="text-center">No.</th>
+        <th>Bulan/Tahun</th>
+        <th>Penjualan Aktual</th>
+        <th>Ramalan 4 Periode</th>
+        <th>Error</th>
+        <th>[Error]</th>
+        <th>Error^2</th>
+        <th>% Error</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($wma4Periode->wmaPeriodeCalc as $wmaPeriodeCalc)
+      <tr>
+        <td class="text-center">{{ $loop->iteration }}</td>
         <td>{{ $wmaPeriodeCalc->date }}</td>
         <td>{{ $wmaPeriodeCalc->quantitySold }}</td>
         <td>{{ $wmaPeriodeCalc->ft }}</td>
@@ -130,7 +171,7 @@
         <td>{{ $wmaPeriodeCalc->absError }}</td>
         <td>{{ $wmaPeriodeCalc->squareError }}</td>
         <td>{{ $wmaPeriodeCalc->percentError }}</td>
-      </x-table.row>
+      </tr>
       @endforeach
       <tr>
         <td class="text-center">{{ count($wma4Periode->wmaPeriodeCalc)+1 }}</td>
@@ -162,5 +203,71 @@
         <th class="bg-warning">MSE</th>
         <th class="bg-warning">MAPE</th>
       </tr>
-  </x-card.table>
+    </tbody>
+  </table>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <p>Berdasarkan perhitungan dari ketiga tabel periode tersebut, peramalan yang dianjurkan untuk digunakan adalah </p>
+    <p></p>
+  </div>
+</div>
+{{-- <div class="card">
+  <div class="card-body">
+    <h5 class="text-center text-primary mb-3">Grafik</h5>
+    <canvas id="myChart"></canvas>
+  </div>
+</div> --}}
+
+@push('js')
+  <script src="{{ asset('/js/chart.min.js') }}"></script>
+  <script>
+    "use strict";
+
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    datasets: [
+      {
+        label: 'Statistics',
+        data: [460, 458, 330, 502, 430, 610, 488],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }
+    ]
+  },
+  options: {
+    legend: {
+      display: true
+    },
+    scales: {
+      yAxes: [{
+        gridLines: {
+          drawBorder: false,
+          color: '#f2f2f2',
+        },
+        ticks: {
+          beginAtZero: true,
+          stepSize: 150
+        }
+      }],
+      xAxes: [{
+        ticks: {
+          display: true
+        },
+        gridLines: {
+          display: false
+        }
+      }]
+    },
+  }
+});
+  </script>
+@endpush
 @endsection
+
+

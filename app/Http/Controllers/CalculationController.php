@@ -116,7 +116,18 @@ class CalculationController extends Controller
       $wma2Periode = calculateWMA($sortedSales, 2);
       $wma3Periode = calculateWMA($sortedSales, 3);
       $wma4Periode = calculateWMA($sortedSales, 4);
-      return view('dashboard.calculation.wma-result', compact('wma2Periode', 'wma3Periode', 'wma4Periode', 'medicine'));
+      // $_MAPES = array_merge(
+      //   [$wma2Periode->wmaPeriodeResult->MAPE], 
+      //   [$wma3Periode->wmaPeriodeResult->MAPE], 
+      //   [$wma4Periode->wmaPeriodeResult->MAPE]
+      // );
+      // dd( min($_MAPES));
+      $labels = [];
+      $datasets = [];
+      for ($i=0; $i < count($sales); $i++) { 
+        $labels[$i] = $sales[$i]->date;
+      }
+      return view('dashboard.calculation.wma-result', compact('wma2Periode', 'wma3Periode', 'wma4Periode', 'medicine', 'labels', 'datasets'));
     } catch (\Throwable $th) {
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan saat menghitung data!', $th->getMessage()]]);

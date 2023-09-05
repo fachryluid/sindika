@@ -41,7 +41,7 @@
         </div>
         <input type="text" class="form-control {{ $phoneClass }}" id="{{ $id }}"
           name="{{ $name }}" value="{{ $value }}" placeholder="{{ $placeholder ?? '' }}"
-          {{ !$optional ? 'required' : '' }} {{ $attributes }}>
+          {{ !$optional ? 'required' : '' }} {{ $attributes }} maxlength="13">
       </div>
     @break
 
@@ -86,12 +86,17 @@
     <script>
       const phones = document.querySelectorAll('.{{ $phoneClass }}');
       phones.forEach(phone => {
-        new Cleave(phone, {
-          phone: true,
-          /* tampaknya yang Indonesia kayak ga ada format */
-          phoneRegionCode: 'ID'
-          /* jadinya saya pake India */
-          /* phoneRegionCode: 'IN' */
+        phone.addEventListener("keydown", function (event) {
+          let inputValue = phone.value;
+          const inputValueLength = inputValue.length;
+          const keyCode = event.keyCode || event.which;
+          inputValue = inputValue.replace(/[^0-9-]/g, '');
+          if (keyCode !== 8) {
+            if (inputValueLength === 3 || inputValueLength === 8) {
+              inputValue = inputValue.slice(0, inputValueLength) + "-" + inputValue.slice(inputValueLength);
+            }
+          }
+          phone.value = inputValue;
         });
       });
     </script>

@@ -22,6 +22,6 @@
       value="{{ $supplier->name }}" />
     <x-form.input type="text" name="address" label="Alamat" placeholder="Alamat" value="{{ $supplier->address }}" />
     <x-form.input type="phone" name="phone_number" label="No. Handphone" placeholder="No. Handphone"
-      value="{{ $supplier->phone_number }}" />
+      value="{{ formatPhoneNumber($supplier->phone_number) }}" />
   </x-card.form>
 @endsection
