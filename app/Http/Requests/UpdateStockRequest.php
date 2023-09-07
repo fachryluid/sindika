@@ -26,7 +26,6 @@ class UpdateStockRequest extends FormRequest
           'medicine_id' => 'required|integer',
           'quantity' => 'required|integer',
           'order_cost' => 'required|string',
-          'storage_cost' => 'required|string',
           'order_date' => 'required|date',
           'expected_delivery' => 'required|date',
           'price' => 'required|string',

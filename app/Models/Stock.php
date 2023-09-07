@@ -13,7 +13,7 @@ class Stock extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['supplier_id', 'medicine_id', 'quantity', 'order_cost', 'storage_cost', 'order_date', 'expected_delivery', 'price', 'expired_date'];
+  protected $fillable = ['supplier_id', 'medicine_id', 'quantity', 'order_cost', 'order_date', 'expected_delivery', 'price', 'expired_date'];
 
   protected $guarded = ['_token'];
 

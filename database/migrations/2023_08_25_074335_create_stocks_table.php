@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
             $table->integer('quantity');
             $table->bigInteger('order_cost');
-            $table->bigInteger('storage_cost');
             $table->date('order_date');
             $table->date('expected_delivery');
             $table->bigInteger('price');
