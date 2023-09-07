@@ -7,7 +7,7 @@
   @if (isset($detailRoute) || isset($deleteRoute))
     <td>
       @isset($editRoute)
-        <x-button.edit :$id :route="$editRoute" size="sm" :type="$editButtonType" :modal-title="$editTitle">
+        <x-button.edit :$id :route="$editRoute" size="sm" :type="$editButtonType ?? 'link'" :modal-title="$editTitle ?? 'Edit Data'">
           <x-slot:edit-form>
             {{ $editForm ?? '' }}
           </x-slot:edit-form>
