@@ -16,60 +16,37 @@ class SaleController extends Controller
   {
     $medicines = collect([]);
     $realMedicines = Medicine::with('stocks.sales')->get();
+    $totalStock = 0;
     foreach ($realMedicines as $medicine) {
       $quantitySold = 0;
       foreach ($medicine->stocks as $stock) {
+        $totalStock += $stock->quantity;
         foreach ($stock->sales as $sale) {
           $quantitySold += $sale->quantity_sold;
         }
       }
-
       $medicines->push((object) [
         ...$medicine->toArray(),
-        'initialStock' => 50,
+        'initialStock' => $totalStock,
         'quantitySold' => $quantitySold,
-        'currentStock' => $medicine->initialStock - $quantitySold
+        'currentStock' => $totalStock - $quantitySold
       ]);
     }
-
-    // $medicines adalah collection/array dari object dengan properti seperti ini:
-    // [
-    //   'uuid' => uuid,
-    //   'name' => string,
-    //   'initialStock' => number,
-    //   'quantitySold' => number,
-    //   'currentStock' => number,
-    // ]
-    // 
-    // Attribut `uuid` sementara ini hanya diperlukan untuk route detail
-    // sesuaikan saja dengan kebutuhan route detail (cek file web.php dan view dashboard.master.sale.index untuk route detail)
 
     return view('dashboard.master.sale.index', compact('medicines'));
   }
 
-  public function show()
+  public function show($uuid)
   {
-    $medicine = Medicine::first();
-    $months = [
-      (object) [
-        'name' => 'Januari',
-        'quantitySold' => 10
-      ],
-      (object) [
-        'name' => 'Februari',
-        'quantitySold' => 20
-      ],
-      (object) [
-        'name' => 'Maret',
-        'quantitySold' => 30
-      ],
-      (object) [
-        'name' => 'April',
-        'quantitySold' => 40
-      ],
-    ];
+    $medicine = Medicine::where('uuid', $uuid)->with('stocks.sales')->firstOrFail();
+    $sales = collect([]);
+    foreach ($medicine->stocks as $stock) {
+      foreach ($stock->sales as $sale) {
+        $sales[] = $sale;
+      }
+    }
 
-    return view('dashboard.master.sale.show', compact('medicine', 'months'));
+    return view('dashboard.master.sale.show', compact('medicine', 'sales'));
   }
 
   public function cetak_format(Request $request)
@@ -104,7 +81,7 @@ class SaleController extends Controller
         $salesData->push($sale);
       }
 
-      return Excel::download(new FormatPenjualanExport($salesData, $months), date("d-m-Y-H-i-s") . '-Format-Penjualan.xlsx');
+      return Excel::download(new FormatPenjualanExport($salesData, $months), 'Format-Penjualan-'.date("d-m-Y-H-i-s").'.xlsx');
     } catch (\Exception $e) {
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan', $e->getMessage()]]);

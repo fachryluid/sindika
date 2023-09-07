@@ -15,10 +15,10 @@
       <x-button.back :route="route('master.sale.index')" class="note-btn" />
     </x-slot:actions>
 
-    @foreach ($months as $month)
+    @foreach ($sales as $sale)
       <x-table.row :$loop :id="$medicine->uuid">
-        <td>{{ $month->name }}</td>
-        <td>{{ $month->quantitySold }}</td>
+        <td>{{ $sale->date }}</td>
+        <td>{{ $sale->quantity_sold }}</td>
       </x-table.row>
     @endforeach
   </x-card.table>

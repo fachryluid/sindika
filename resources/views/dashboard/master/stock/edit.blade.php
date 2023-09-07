@@ -34,8 +34,6 @@
       value="{{ $stock->quantity }}" />
     <x-form.input type="currency" name="order_cost" label="Biaya Pesan" placeholder="Masukkan biaya pemesanan"
       value="{{ $stock->order_cost }}" />
-    <x-form.input type="currency" name="storage_cost" label="Biaya Simpan" placeholder="Masukkan biaya penyimpanan"
-      value="{{ $stock->storage_cost }}" />
     <x-form.input type="date" name="order_date" label="Tanggal Pemesanan" optional value="{{ $stock->order_date }}" />
     <x-form.input type="date" name="expected_delivery" label="Expected Delivery"
       value="{{ $stock->expected_delivery }}" />

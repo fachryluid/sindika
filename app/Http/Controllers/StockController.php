@@ -39,7 +39,8 @@ class StockController extends Controller
   public function show(Stock $stock)
   {
     try {
-      return view('dashboard.master.stock.show', compact('stock'));
+      $medicine = Medicine::where('id', $stock->medicine_id)->firstOrFail();
+      return view('dashboard.master.stock.show', compact('stock', 'medicine'));
     } catch (Throwable $th) {
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan saat mengambil data!', $th->getMessage()]]);

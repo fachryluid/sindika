@@ -18,6 +18,13 @@
         confirm="Data stok ini akan dihapus, apakah Anda ingin melanjutkan?" />
     </x-slot:card-header>
 
-    <h3>{{ $stock->uuid }}</h3>
+    <x-card.table id="stock" title="Detail Data Stok Obat dari {{ $medicine->name }}" :columns="['Jumlah Stok', 'Supplier']" no-actions-field>
+      @foreach ($medicine->stocks as $stock)
+        <x-table.row :$loop>
+          <td>{{ $stock->quantity }}</td>
+          <td>{{ $stock->supplier->name }}</td>
+        </x-table.row>
+      @endforeach
+    </x-card.table>
   </x-card>
 @endsection

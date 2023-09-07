@@ -17,7 +17,7 @@
         <x-button.detail :route="$detailRoute" size="sm" />
       @endisset
       @isset($deleteRoute)
-        <x-button.delete :$id :route="$deleteRoute" size="sm" :confirm="$deleteConfirm ?? 'Data terkait akan dihapus, apakah Anda ingin melanjutkan?'" />
+        <x-button.delete :id="'delete-'.$id" :route="$deleteRoute" size="sm" :confirm="$deleteConfirm ?? 'Data terkait akan dihapus, apakah Anda ingin melanjutkan?'" />
       @endisset
     </td>
   @endif

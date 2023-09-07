@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CalculationController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
@@ -30,9 +31,7 @@ Route::get('/login', function () {
   return view('auth.login');
 })->name('auth.login');
 
-Route::get('/dashboard', function () {
-  return view('dashboard.index');
-})->name('dashboard.index');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 Route::prefix('master')->name('master.')->group(function () {
   Route::resource('/unit', UnitController::class)->except(['create', 'edit'])->names('unit');

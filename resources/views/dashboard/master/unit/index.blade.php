@@ -13,7 +13,10 @@
     @foreach ($units as $unit)
       <x-table.row :$loop :id="$unit->uuid"
         delete-confirm="Data terkait satuan {{ $unit->name }} akan dihapus, apakah Anda ingin melanjutkan?"
-        :detail-route="route('master.unit.show', $unit->uuid)" :delete-route="route('master.unit.destroy', $unit->uuid)" :edit-route="route('master.unit.update', $unit->uuid)" edit-button-type="modal"
+        :detail-route="route('master.unit.show', $unit->uuid)" 
+        :delete-route="route('master.unit.destroy', $unit->uuid)" 
+        :edit-route="route('master.unit.update', $unit->uuid)" 
+        edit-button-type="modal"
         edit-title="Edit data satuan {{ $unit->name }}">
         <td>{{ $unit->name }}</td>
 
