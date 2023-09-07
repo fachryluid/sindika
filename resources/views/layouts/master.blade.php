@@ -60,11 +60,11 @@
               'EOQ' => ['url' => route('calculation.eoq'), 'icon' => 'square-root-alt'],
           ],
 
-          'Laporan' => [
-              'Obat' => ['url' => '#', 'icon' => 'pills'],
-              'Peramalan' => ['url' => '#', 'icon' => 'file-alt'],
-              'EOQ' => ['url' => '#', 'icon' => 'square-root-alt'],
-          ],
+          // 'Laporan' => [
+          //     'Obat' => ['url' => '#', 'icon' => 'pills'],
+          //     'Peramalan' => ['url' => '#', 'icon' => 'file-alt'],
+          //     'EOQ' => ['url' => '#', 'icon' => 'square-root-alt'],
+          // ],
       ]" />
 
       <!-- Main Content -->
