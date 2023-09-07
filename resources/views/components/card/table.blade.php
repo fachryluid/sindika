@@ -25,14 +25,13 @@
 
 @if (isset($createButtonType) && $createButtonType === 'modal')
   <x-modal :$id :title="$modalTitle" no-footer>
-    <form action="{{ $createRoute }}" method="POST">
-      @csrf
+    <x-form action="{{ $createRoute }}" method="POST">
       {{ $createForm ?? '' }}
 
       <div class="text-right">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
         <button type="submit" class="btn btn-primary">Simpan</button>
       </div>
-    </form>
+    </x-form>
   </x-modal>
 @endif

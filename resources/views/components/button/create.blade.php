@@ -6,7 +6,7 @@
     {{ $slot }}
   </x-button>
 @elseif($type === 'modal')
-  <x-modal.trigger :$id>
+  <x-modal.trigger :$id class="note-btn mr-2">
     <i class="fa fa-plus"></i>
     {{ $slot }}
   </x-modal.trigger>

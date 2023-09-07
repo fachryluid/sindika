@@ -15,23 +15,61 @@ class SaleController extends Controller
   public function index()
   {
     $medicines = collect([]);
-    $data = Medicine::with('stocks.sales')->get();
-    foreach ($data as $value) {
+    $realMedicines = Medicine::with('stocks.sales')->get();
+    foreach ($realMedicines as $medicine) {
       $quantitySold = 0;
-      foreach ($value->stocks as $stock) {
+      foreach ($medicine->stocks as $stock) {
         foreach ($stock->sales as $sale) {
           $quantitySold += $sale->quantity_sold;
         }
       }
+
       $medicines->push((object) [
-        'uuid' => $value->uuid,
-        'medicineName' => $value->name,
-        'initialStock' => $stock->quantity,
+        ...$medicine->toArray(),
+        'initialStock' => 50,
         'quantitySold' => $quantitySold,
-        'currentStock' => $stock->quantity - $quantitySold
+        'currentStock' => $medicine->initialStock - $quantitySold
       ]);
     }
+
+    // $medicines adalah collection/array dari object dengan properti seperti ini:
+    // [
+    //   'uuid' => uuid,
+    //   'name' => string,
+    //   'initialStock' => number,
+    //   'quantitySold' => number,
+    //   'currentStock' => number,
+    // ]
+    // 
+    // Attribut `uuid` sementara ini hanya diperlukan untuk route detail
+    // sesuaikan saja dengan kebutuhan route detail (cek file web.php dan view dashboard.master.sale.index untuk route detail)
+
     return view('dashboard.master.sale.index', compact('medicines'));
+  }
+
+  public function show()
+  {
+    $medicine = Medicine::first();
+    $months = [
+      (object) [
+        'name' => 'Januari',
+        'quantitySold' => 10
+      ],
+      (object) [
+        'name' => 'Februari',
+        'quantitySold' => 20
+      ],
+      (object) [
+        'name' => 'Maret',
+        'quantitySold' => 30
+      ],
+      (object) [
+        'name' => 'April',
+        'quantitySold' => 40
+      ],
+    ];
+
+    return view('dashboard.master.sale.show', compact('medicine', 'months'));
   }
 
   public function cetak_format(Request $request)

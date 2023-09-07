@@ -19,7 +19,7 @@
     </x-slot:card-header>
 
     <x-grid.row class="justify-content-center">
-      <x-grid.col md="3" class="mt-3 d-flex flex-column" style="justify-content: space-evenly;">
+      <x-grid.col md="3" class="mt-3 d-flex flex-column" style="justify-content: space-evenly; gap: 1em;">
         <div class="d-flex">
           <div style="flex: 1;"
             class="bg-primary text-white py-2 px-2 rounded-left d-flex align-items-center justify-content-end">

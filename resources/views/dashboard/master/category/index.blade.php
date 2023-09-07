@@ -14,8 +14,14 @@
     @foreach ($categories as $category)
       <x-table.row :$loop :id="$category->uuid"
         delete-confirm="Data obat terkait kategori {{ $category->name }} akan dihapus, apakah Anda ingin melanjutkan?"
-        :detail-route="route('master.category.show', $category->uuid)" :delete-route="route('master.category.destroy', $category->uuid)">
+        :detail-route="route('master.category.show', $category->uuid)" :delete-route="route('master.category.destroy', $category->uuid)" :edit-route="route('master.category.update', $category->uuid)" edit-button-type="modal"
+        edit-title="Edit data kategori {{ $category->name }}">
         <td>{{ $category->name }}</td>
+
+        <x-slot:edit-form>
+          <input type="text" class="form-control mb-3" name="name" placeholder="Masukkan nama kategori obat"
+            value="{{ $category->name }}">
+        </x-slot:edit-form>
       </x-table.row>
     @endforeach
 
