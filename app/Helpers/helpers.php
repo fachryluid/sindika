@@ -69,10 +69,10 @@ if (!function_exists('calculateWMA')) {
           }
           return $temp / $n;
         })($periode, $sortedSales, $i), 2);
-        $error = number_format($sortedSales[$i]->quantity_sold - $ft, 2);
-        $absError = number_format(abs($error), 2);
-        $squareError = number_format($error * $error, 2);
-        $percentError = number_format(abs($error) / $sortedSales[$i]->quantity_sold * 100, 2);
+        $error = (float) number_format($sortedSales[$i]->quantity_sold - $ft, 2);
+        $absError = (float) number_format(abs($error), 2);
+        $squareError = (float) number_format($error * $error, 2);
+        $percentError = (float) number_format(abs($error) / $sortedSales[$i]->quantity_sold * 100, 2);
       }
       $wmaPeriode->wmaPeriodeCalc[$i] = (object) [
         'date' => strtoupper(date('F/Y', strtotime($sortedSales[$i]->date))),
@@ -107,5 +107,73 @@ if (!function_exists('formatPhoneNumber')) {
     } else {
       return $phoneNumber;
     }
+  }
+}
+
+if (!function_exists('calculateEOQ')) {
+  function calculateEOQ($medicines): object
+  {
+    $eoqs = collect([]);
+    foreach ($medicines as $medicine) {
+      $sales = collect([]);
+      foreach ($medicine->stocks as $stock) {
+        foreach ($stock->sales as $sale) {
+          $sales[] = $sale;
+        }
+      }
+      $sortedSales = $sales->sortBy('date')->values();
+
+      if (count($sortedSales) >= 12) {
+        $lastYearSales = array_slice($sortedSales->toArray(), -12);
+
+        $_R = 0; // C4
+        foreach ($lastYearSales as $item) {
+          $_R += $item['quantity_sold'];
+        }
+
+        $prices = collect($medicine->stocks)->pluck('price');
+        $price = $prices->max();
+
+        $orderCosts = collect($medicine->stocks)->pluck('order_cost');
+        $orderCost = $orderCosts->max();
+
+        $storageCost = $_R * ($price * 0.1);
+
+        $_EOQ = sqrt((2 * $_R * $orderCost) / $storageCost);
+
+        $orderFrequency = $_R / $_EOQ;
+
+        $_O = $orderCost * $orderFrequency;
+
+        $_C = ($_EOQ / 2) * $storageCost;
+
+        $stockTotalCost = $_O + $_C;
+
+        $orderDate = new DateTime($medicine->stocks[0]->order_date);
+        $expectedDelivery = new DateTime($medicine->stocks[0]->expected_delivery);
+        $_LT = $expectedDelivery->diff($orderDate)->days;
+
+        $_SS = ($_R / 360) * $_LT;
+
+        $_ROP = 2 * $_SS;
+
+        $eoqs->push((object) [
+          'medicine' => $medicine->name,
+          '_R' => intval(round($_R)),
+          'price' => intval(round($price)),
+          'orderCost' => intval(round($orderCost)),
+          'storageCost' => intval(round($storageCost)),
+          '_EOQ' => intval(round($_EOQ)),
+          'orderFrequency' => intval(round($orderFrequency)),
+          '_O' => intval(round($_O)),
+          '_C' => intval(round($_C)),
+          'stockTotalCost' => intval(round($stockTotalCost)),
+          '_SS' => intval(round($_SS)),
+          '_ROP' => intval(round($_ROP)),
+          '_LT' => intval(round($_LT)),
+        ]);
+      }
+    }
+    return $eoqs;
   }
 }

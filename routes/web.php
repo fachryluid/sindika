@@ -54,4 +54,5 @@ Route::prefix('calculation')->name('calculation.')->group(function () {
 
 Route::prefix('excel')->name('excel.')->group(function () {
   Route::get('/cetak-wma/{uuid}', [ExcelController::class, 'cetak_wma'])->name('cetak-wma');
+  Route::get('/cetak-eoq', [ExcelController::class, 'cetak_eoq'])->name('cetak-eoq');
 });

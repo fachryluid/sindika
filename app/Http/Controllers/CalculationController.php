@@ -13,82 +13,7 @@ class CalculationController extends Controller
   {
     try {
       $medicines = Medicine::all();
-      $eoqs = collect([]);
-      foreach ($medicines as $medicine) {
-        $sales = collect([]);
-        foreach ($medicine->stocks as $stock) {
-          foreach ($stock->sales as $sale) {
-            $sales[] = $sale;
-          }
-        }
-        $sortedSales = $sales->sortBy('date')->values();
-
-        // cek data penjualan obat mencukupi 12 bulan
-        if (count($sortedSales) >= 12) {
-          // ambil data 12 bulan terakhir
-          $lastYearSales = array_slice($sortedSales->toArray(), -12);
-
-          // jumlah kebutuhan per tahun
-          $_R = 0; // C4
-          foreach ($lastYearSales as $item) {
-            $_R += $item['quantity_sold'];
-          }
-
-          // harga
-          $prices = collect($medicine->stocks)->pluck('price');
-          $price = $prices->max();
-
-          // biaya pemesanan
-          $orderCosts = collect($medicine->stocks)->pluck('order_cost');
-          $orderCost = $orderCosts->max(); // E4
-
-          // biaya penyimpanan
-          $storageCost = $_R * ($price * 0.1);
-
-          // EOQ
-          $_EOQ = sqrt((2 * $_R * $orderCost) / $storageCost); // G4
-
-          // frequensi pemesanan
-          $orderFrequency = $_R / $_EOQ;
-
-          // T. biaya pemesanan
-          $_O = $orderCost * $orderFrequency;
-
-          // T. biaya penyimpanan
-          $_C = ($_EOQ / 2) * $storageCost;
-
-          // Total biaya persediaan
-          $stockTotalCost = $_O + $_C;
-
-          // Lead Time
-          $orderDate = new DateTime($medicine->stocks[0]->order_date);
-          $expectedDelivery = new DateTime($medicine->stocks[0]->expected_delivery);
-          $_LT = $expectedDelivery->diff($orderDate)->days;
-
-          // Safety Stock
-          $_SS = ($_R / 360) * $_LT;
-
-          // Reorder Point
-          $_ROP = 2 * $_SS;
-
-          $eoqs->push((object) [
-            'medicine' => $medicine->name,
-            '_R' => intval(round($_R)),
-            'price' => intval(round($price)),
-            'orderCost' => intval(round($orderCost)),
-            'storageCost' => intval(round($storageCost)),
-            '_EOQ' => intval(round($_EOQ)),
-            'orderFrequency' => intval(round($orderFrequency)),
-            '_O' => intval(round($_O)),
-            '_C' => intval(round($_C)),
-            'stockTotalCost' => intval(round($stockTotalCost)),
-            '_LT' => intval(round($_LT)),
-            '_SS' => intval(round($_SS)),
-            '_ROP' => intval(round($_ROP)),
-          ]);
-        }
-      }
-      // dd($eoqs);
+      $eoqs = calculateEOQ($medicines);
       return view('dashboard.calculation.eoq', compact('eoqs'));
     } catch (\Throwable $th) {
       return redirect()->back()
@@ -184,11 +109,10 @@ class CalculationController extends Controller
         'borderColor' => 'rgb(0, 0, 255)',
         'tension' => 0.1
       ];
-      // dd($labels);
       return view('dashboard.calculation.wma-result', compact('wma2Periode', 'wma3Periode', 'wma4Periode', 'medicine', 'labels', 'datasets', 'recomendation'));
-    } catch (\Throwable $th) {
+    } catch (\Exception $e) {
       return redirect()->back()
-        ->withErrors(['message' => ['Terjadi kesalahan saat menghitung data!', $th->getMessage()]]);
+        ->withErrors(['message' => ['Terjadi kesalahan saat menghitung data!', $e->getMessage()]]);
     }
   }
 }

@@ -16,7 +16,12 @@
       yang optimal, sehingga dapat memperoleh pengendalian persediaan yang juga optimal.
     </p>
   </x-alert.icon>
-
+  <div class="mb-3 text-right">
+    <a href="{{ route('excel.cetak-eoq') }}" class="btn btn-warning">
+      <i class="fas fa-print"></i>
+      Cetak
+    </a>
+  </div>
   <table class="table table-hover table-sm">
     <thead>
       <tr>
