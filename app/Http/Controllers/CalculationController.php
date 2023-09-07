@@ -113,9 +113,9 @@ class CalculationController extends Controller
         }
       }
       $sortedSales = $sales->sortBy('date')->values();
-      $wma2Periode = calculateWMA($sortedSales, 2);
-      $wma3Periode = calculateWMA($sortedSales, 3);
-      $wma4Periode = calculateWMA($sortedSales, 4);
+      $wma2Periode = calculateWMA($medicine->stocks, 2);
+      $wma3Periode = calculateWMA($medicine->stocks, 3);
+      $wma4Periode = calculateWMA($medicine->stocks, 4);
       $_MAPES = [
         (object) [
           'periode' => $wma2Periode->wmaPeriodeResult->periode,
@@ -144,8 +144,47 @@ class CalculationController extends Controller
       $labels = [];
       $datasets = [];
       for ($i=0; $i < count($sales); $i++) { 
-        $labels[$i] = $sales[$i]->date;
+        $date = date('F Y', strtotime($sales[$i]->date));
+        $labels[$i] = $date;
       }
+      array_push($labels, "BULAN DEPAN");
+      $data2Periode = [];
+      foreach ($wma2Periode->wmaPeriodeCalc as $data) {
+        $data2Periode[] = $data->ft;
+      }
+      array_push($data2Periode, $wma2Periode->wmaPeriodeResult->nextFt);
+      $datasets[0] = (object) [
+        'label' => '2 Periode',
+        'data' => $data2Periode,
+        'fill' => false,
+        'borderColor' => 'rgb(255, 0, 0)',
+        'tension' => 0.1
+      ];
+      $data3Periode = [];
+      foreach ($wma3Periode->wmaPeriodeCalc as $data) {
+        $data3Periode[] = $data->ft;
+      }
+      array_push($data3Periode, $wma3Periode->wmaPeriodeResult->nextFt);
+      $datasets[1] = (object) [
+        'label' => '3 Periode',
+        'data' => $data3Periode,
+        'fill' => false,
+        'borderColor' => 'rgb(0, 255, 0)',
+        'tension' => 0.1
+      ];
+      $data4Periode = [];
+      foreach ($wma4Periode->wmaPeriodeCalc as $data) {
+        $data4Periode[] = $data->ft;
+      }
+      array_push($data4Periode, $wma4Periode->wmaPeriodeResult->nextFt);
+      $datasets[2] = (object) [
+        'label' => '4 Periode',
+        'data' => $data4Periode,
+        'fill' => false,
+        'borderColor' => 'rgb(0, 0, 255)',
+        'tension' => 0.1
+      ];
+      // dd($labels);
       return view('dashboard.calculation.wma-result', compact('wma2Periode', 'wma3Periode', 'wma4Periode', 'medicine', 'labels', 'datasets', 'recomendation'));
     } catch (\Throwable $th) {
       return redirect()->back()

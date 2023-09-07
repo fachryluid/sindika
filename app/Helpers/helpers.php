@@ -14,8 +14,15 @@ if (!function_exists('confirmPassword')) {
 }
 
 if (!function_exists('calculateWMA')) {
-  function calculateWMA($sales, $periode): object
+  function calculateWMA($medicineStocks, $periode): object
   {
+    $sales = collect([]);
+    foreach ($medicineStocks as $stock) {
+      foreach ($stock->sales as $sale) {
+        $sales[] = $sale;
+      }
+    }
+    $sortedSales = $sales->sortBy('date')->values();
     $ft = null;
     $error = null;
     $absError = null;
@@ -37,39 +44,39 @@ if (!function_exists('calculateWMA')) {
     $totalError = 0;
     $totalSquareError = 0;
     $totalPercentError = 0;
-    for ($i = 0; $i < $sales->count() + 1; $i++) {
-      if ($i === $sales->count()) {
-        $wmaPeriode->wmaPeriodeResult->nextFt = number_format((function ($periode, $sales, $i) {
+    for ($i = 0; $i < $sortedSales->count() + 1; $i++) {
+      if ($i === $sortedSales->count()) {
+        $wmaPeriode->wmaPeriodeResult->nextFt = number_format((function ($periode, $sortedSales, $i) {
           $k = 1;
           $n = 0;
           $temp = 0;
           for ($j = $periode; $j > 0; $j--) {
             $n += $k;
-            $temp += $sales[$i - $j]->quantity_sold * $k++;
+            $temp += $sortedSales[$i - $j]->quantity_sold * $k++;
           }
           return $temp / $n;
-        })($periode, $sales, $i), 2);
+        })($periode, $sortedSales, $i), 2);
         break;
       }
       if ($i >= $periode) {
-        $ft = number_format((function ($periode, $sales, $i) {
+        $ft = number_format((function ($periode, $sortedSales, $i) {
           $k = 1;
           $n = 0;
           $temp = 0;
           for ($j = $periode; $j > 0; $j--) {
             $n += $k;
-            $temp += $sales[$i - $j]->quantity_sold * $k++;
+            $temp += $sortedSales[$i - $j]->quantity_sold * $k++;
           }
           return $temp / $n;
-        })($periode, $sales, $i), 2);
-        $error = number_format($sales[$i]->quantity_sold - $ft, 2);
+        })($periode, $sortedSales, $i), 2);
+        $error = number_format($sortedSales[$i]->quantity_sold - $ft, 2);
         $absError = number_format(abs($error), 2);
         $squareError = number_format($error * $error, 2);
-        $percentError = number_format(abs($error) / $sales[$i]->quantity_sold * 100, 2);
+        $percentError = number_format(abs($error) / $sortedSales[$i]->quantity_sold * 100, 2);
       }
       $wmaPeriode->wmaPeriodeCalc[$i] = (object) [
-        'date' => strtoupper(date('F/Y', strtotime($sales[$i]->date))),
-        'quantitySold' => $sales[$i]->quantity_sold,
+        'date' => strtoupper(date('F/Y', strtotime($sortedSales[$i]->date))),
+        'quantitySold' => $sortedSales[$i]->quantity_sold,
         'ft' => $ft,
         'error' => $error,
         'absError' => $absError,
@@ -82,9 +89,9 @@ if (!function_exists('calculateWMA')) {
       $wmaPeriode->wmaPeriodeResult->totalError = number_format($totalError, 2);
       $wmaPeriode->wmaPeriodeResult->totalSquareError = number_format($totalSquareError, 2);
       $wmaPeriode->wmaPeriodeResult->totalPercentError = number_format($totalPercentError, 2);
-      $wmaPeriode->wmaPeriodeResult->MAD = number_format($totalError / ($sales->count() - $periode), 2);
-      $wmaPeriode->wmaPeriodeResult->MSE = number_format($totalSquareError / ($sales->count() - $periode), 2);
-      $wmaPeriode->wmaPeriodeResult->MAPE = number_format($totalPercentError / ($sales->count() - $periode), 2);
+      $wmaPeriode->wmaPeriodeResult->MAD = number_format($totalError / ($sortedSales->count() - $periode), 2);
+      $wmaPeriode->wmaPeriodeResult->MSE = number_format($totalSquareError / ($sortedSales->count() - $periode), 2);
+      $wmaPeriode->wmaPeriodeResult->MAPE = number_format($totalPercentError / ($sortedSales->count() - $periode), 2);
     }
     return $wmaPeriode;
   }

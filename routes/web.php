@@ -53,5 +53,5 @@ Route::prefix('calculation')->name('calculation.')->group(function () {
 });
 
 Route::prefix('excel')->name('excel.')->group(function () {
-  // Route::post('/cetak-format', [ExcelController::class, 'format'])->name('cetak-format');
+  Route::get('/cetak-wma/{uuid}', [ExcelController::class, 'cetak_wma'])->name('cetak-wma');
 });

@@ -10,9 +10,16 @@
 @section('title', 'Hasil Peramalan WMA')
 
 @section('main')
+<div class="mb-3 text-right">
+  <a href="{{ route('excel.cetak-wma', $medicine->uuid) }}" class="btn btn-warning">
+    <i class="fas fa-print"></i>
+    Cetak
+  </a>
+</div>
+
 <div class="card">
   <div class="card-body">
-    <h4 class="text-center text-primary">{{ $medicine->name }}</h4>
+    <h4 class="text-center text-primary mb-0">{{ $medicine->name }}</h4>
   </div>
 </div>
   
@@ -213,12 +220,12 @@
     <h5 class="bg-primary text-center text-white font-bold py-1">{{ $recomendation }}</h5>
   </div>
 </div>
-{{-- <div class="card">
+<div class="card">
   <div class="card-body">
     <h5 class="text-center text-primary mb-3">Grafik</h5>
     <canvas id="myChart"></canvas>
   </div>
-</div> --}}
+</div>
 
 @push('js')
   <script src="{{ asset('/js/chart.min.js') }}"></script>
@@ -229,16 +236,8 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    datasets: [
-      {
-        label: 'Statistics',
-        data: [460, 458, 330, 502, 430, 610, 488],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
-      }
-    ]
+    labels: @json($labels),
+    datasets: @json($datasets)
   },
   options: {
     legend: {
@@ -250,17 +249,13 @@ var myChart = new Chart(ctx, {
           drawBorder: false,
           color: '#f2f2f2',
         },
-        ticks: {
-          beginAtZero: true,
-          stepSize: 150
-        }
       }],
       xAxes: [{
         ticks: {
           display: true
         },
         gridLines: {
-          display: false
+          display: true
         }
       }]
     },
