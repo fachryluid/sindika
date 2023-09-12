@@ -31,14 +31,18 @@
           <li class="dropdown"><a href="#" data-toggle="dropdown"
               class="nav-link dropdown-toggle nav-link-lg nav-link-user">
               <img alt="image" src="https://xsgames.co/randomusers/avatar.php?g=pixel" class="rounded-circle mr-1">
-              <div class="d-sm-none d-lg-inline-block">Hi, Apoteker</div>
+              <div class="d-sm-none d-lg-inline-block">{{ auth()->user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <div class="dropdown-title">Logged in 5 min ago</div>
+              <div class="dropdown-title">Logged in</div>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
+              <a href="javascript:void(0);" onclick="document.getElementById('submitBtn').click();" class="button dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
+              <form action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                  <button type="submit" id="submitBtn">Logout</button>
+              </form>
             </div>
           </li>
         </ul>

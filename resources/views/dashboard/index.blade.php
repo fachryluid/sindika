@@ -23,7 +23,7 @@
   </div>
 
   <div class="alert alert-info" style="font-size: 18px">
-    <div class="alert-title" style="font-size: 24px">Selamat datang Apoteker</div>
-    Anda login sebagai Apoteker.
+    <div class="alert-title" style="font-size: 24px">Selamat datang {{ auth()->user()->name }}</div>
+    Anda login sebagai [{{ auth()->user()->role }}].
   </div>
 @endsection

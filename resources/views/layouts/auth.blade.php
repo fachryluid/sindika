@@ -49,6 +49,11 @@
               </div>
 
               <div class="card-body">
+                @if (session('danger'))
+                  <x-alert type="danger">
+                    {{ session('danger') }}
+                  </x-alert>
+                @endif
                 @yield('form')
               </div>
             </div>
