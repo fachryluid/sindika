@@ -15,8 +15,10 @@ class DashboardController extends Controller
 
         $totalMedicine = count($medicines);
         $totalStock = 0;
-        foreach ($stocks as $stock) {
-            $totalStock += $stock->quantity;
+        foreach ($medicines as $medicine) {
+            if(count($medicine->stocks) > 0) {
+                $totalStock++;
+            }
         }
 
         $emptyStock = $medicines

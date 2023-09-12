@@ -16,8 +16,8 @@ class SaleController extends Controller
   {
     $medicines = collect([]);
     $realMedicines = Medicine::with('stocks.sales')->get();
-    $totalStock = 0;
     foreach ($realMedicines as $medicine) {
+      $totalStock = 0;
       $quantitySold = 0;
       foreach ($medicine->stocks as $stock) {
         $totalStock += $stock->quantity;

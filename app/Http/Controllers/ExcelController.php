@@ -17,7 +17,7 @@ class ExcelController extends Controller
       $wma2Periode = calculateWMA($medicine->stocks, 2);
       $wma3Periode = calculateWMA($medicine->stocks, 3);
       $wma4Periode = calculateWMA($medicine->stocks, 4);
-      return Excel::download(new WmaExport($wma2Periode, $wma3Periode, $wma4Periode), 'WMA-'.date("d-m-Y-H-i-s").'.xlsx');
+      return Excel::download(new WmaExport($wma2Periode, $wma3Periode, $wma4Periode), $medicine->name.'-WMA-'.date("d-m-Y-H-i-s").'.xlsx');
     } catch (\Exception $e) {
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan', $e->getMessage()]]);
