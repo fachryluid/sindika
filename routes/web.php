@@ -5,6 +5,7 @@ use App\Http\Controllers\CalculationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
@@ -37,6 +38,10 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::middleware(['web', 'auth'])->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
   Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+  Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+  Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+  Route::post('/profile/change-password', [ProfileController::class, 'change_password'])->name('profile.change_password');
 
   Route::prefix('master')->name('master.')->middleware(['roles:APOTEKER,OPERATOR'])->group(function () {
     Route::resource('/unit', UnitController::class)->except(['create', 'edit'])->names('unit');

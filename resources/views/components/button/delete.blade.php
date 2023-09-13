@@ -1,4 +1,4 @@
-@props(['id', 'route', 'class' => '', 'size' => null, 'confirm' => 'Data terkait akan dihapus, apakah Anda ingin melanjutkan?'])
+@props(['id', 'route', 'class' => '', 'size' => null, 'confirm' => 'Data terkait akan dihapus, apakah Anda ingin melanjutkan?', 'no-delete-confirm'])
 
 <x-modal.trigger :$id color="danger" :$size :$class>
   <i class="fas fa-trash"></i>
@@ -7,8 +7,10 @@
 
 <x-modal :$id :title="$confirm" no-footer>
   <x-form action="{{ $route }}" method="DELETE">
-    <x-form.input :id="'password-' . $id" type="password" name="password" label="Password Anda"
-      placeholder="Masukkan password untuk konfirmasi" required />
+    @if (!$noDeleteConfirm)
+      <x-form.input :id="'password-' . $id" type="password" name="password" label="Password Anda"
+        placeholder="Masukkan password untuk konfirmasi" required />
+    @endif
 
     <div class="d-flex justify-content-end" style="gap: 8px">
       <x-modal.close color="secondary">

@@ -35,6 +35,9 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in</div>
+              <a href="{{ route('profile.index') }}" class="button dropdown-item has-icon">
+                <i class="fas fa-user-alt"></i> Profil
+              </a>
               <div class="dropdown-divider"></div>
               <a href="javascript:void(0);" onclick="document.getElementById('submitBtn').click();" class="button dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout

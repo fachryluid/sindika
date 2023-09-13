@@ -91,7 +91,6 @@ class MedicineController extends Controller
   public function destroy(Medicine $medicine, Request $request)
   {
     try {
-      throw_if(!confirmPassword($request->password), 'Password yang anda masukkan salah!');
       Medicine::destroy($medicine->id);
       return redirect()->route('master.medicine.index')->with('success', 'Data Obat ' . $medicine->name . ' berhasil dihapus!');
     } catch (Throwable $th) {
