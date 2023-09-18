@@ -759,6 +759,7 @@ select.form-control:not([size]):not([multiple]) {
 .card .card-header {
   border-bottom-color: #f9f9f9;
   line-height: 30px;
+  -ms-grid-row-align: center;
   align-self: center;
   width: 100%;
   min-height: 70px;

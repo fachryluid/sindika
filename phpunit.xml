@@ -27,5 +27,6 @@
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="ADMIN_TEST_PASSWORD" value="admin_testing123?!"/>
     </php>
 </phpunit>
