@@ -7,7 +7,7 @@
 
 <x-modal :$id :title="$confirm" no-footer>
   <x-form action="{{ $route }}" method="DELETE">
-    @if (!$noDeleteConfirm)
+    @if (!isset($noDeleteConfirm) || !$noDeleteConfirm)
       <x-form.input :id="'password-' . $id" type="password" name="password" label="Password Anda"
         placeholder="Masukkan password untuk konfirmasi" required />
     @endif
