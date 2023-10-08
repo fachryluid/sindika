@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('type_id')->constrained('types')->onDelete('cascade');;
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');;
             $table->uuid('uuid')->unique();
-            $table->string('name');
+            $table->string('name', 75);
             $table->string('image')->nullable();
             $table->timestamps();
         });
