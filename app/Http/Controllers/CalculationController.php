@@ -109,7 +109,7 @@ class CalculationController extends Controller
         'borderColor' => 'rgb(0, 0, 255)',
         'tension' => 0.1
       ];
-      return view('dashboard.calculation.wma-result', compact('wma2Periode', 'wma3Periode', 'wma4Periode', 'medicine', 'labels', 'datasets', 'recomendation'));
+      return view('dashboard.calculation.wma-result', compact('wma2Periode', 'wma3Periode', 'wma4Periode', 'medicine', 'labels', 'datasets', 'recomendation', 'periodeTerendah'));
     } catch (\Exception $e) {
       return redirect()->back()
         ->withErrors(['message' => ['Terjadi kesalahan saat menghitung data!', $e->getMessage()]]);

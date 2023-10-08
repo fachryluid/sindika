@@ -26,7 +26,7 @@
 <div class="card">
   <div class="card-body">
   <h5 class="text-center text-primary mb-3">RAMALAN 2 PERIODE</h5>
-  <table class="table table-hover table-sm">
+  <table class="table table-hover table-sm {{ $periodeTerendah == 2 ? 'table-info rounded' : null }}">
     <thead>
       <tr>
         <th class="text-center">No.</th>
@@ -57,30 +57,22 @@
         <td>NEXT MONTH</td>
         <td>?</td>
         <td>{{ $wma2Periode->wmaPeriodeResult->nextFt }}</td>
-        <th class="bg-secondary">JUMLAH</th>
-        <td class="bg-secondary">{{ $wma2Periode->wmaPeriodeResult->totalError }}</td>
-        <td class="bg-secondary">{{ $wma2Periode->wmaPeriodeResult->totalSquareError }}</td>
-        <td class="bg-secondary">{{ $wma2Periode->wmaPeriodeResult->totalPercentError }}</td>
+        <th class="table-primary">JUMLAH</th>
+        <td class="table-primary">{{ $wma2Periode->wmaPeriodeResult->totalError }}</td>
+        <td class="table-primary">{{ $wma2Periode->wmaPeriodeResult->totalSquareError }}</td>
+        <td class="table-primary">{{ $wma2Periode->wmaPeriodeResult->totalPercentError }}</td>
       </tr>
       <tr>
-        <td class="text-center">{{ count($wma2Periode->wmaPeriodeCalc)+2 }}</td>
+        <td class="text-center">#</td>
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
-        <td class="bg-warning">{{ $wma2Periode->wmaPeriodeResult->MAD }}</td>
-        <td class="bg-warning">{{ $wma2Periode->wmaPeriodeResult->MSE }}</td>
-        <td class="bg-warning">{{ $wma2Periode->wmaPeriodeResult->MAPE }}</td>
-      </tr>
-      <tr>
-        <td class="text-center">{{ count($wma2Periode->wmaPeriodeCalc)+3 }}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <th class="bg-warning">MAD</th>
-        <th class="bg-warning">MSE</th>
-        <th class="bg-warning">MAPE</th>
+        <th class="bg-warning text-white">MAPE</th>
+        <td class="bg-warning text-white">=</td>
+        <td class="bg-warning text-white">{{ $wma2Periode->wmaPeriodeResult->MAPE }}</td>
+        <td class="bg-warning text-white">
+          <i class="fa fa-info-circle" data-toggle="tooltip" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eligendi molestiae laudantium nobis, similique repudiandae eum fuga voluptates sint ipsam!"></i>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -90,7 +82,7 @@
 <div class="card">
   <div class="card-body">
   <h5 class="text-center text-primary mb-3">RAMALAN 3 PERIODE</h5>
-  <table class="table table-hover table-sm">
+  <table class="table table-hover table-sm {{ $periodeTerendah == 3 ? 'table-info rounded' : null }}">
     <thead>
       <tr>
         <th class="text-center">No.</th>
@@ -121,30 +113,22 @@
         <td>NEXT MONTH</td>
         <td>?</td>
         <td>{{ $wma3Periode->wmaPeriodeResult->nextFt }}</td>
-        <th class="bg-secondary">JUMLAH</th>
-        <td class="bg-secondary">{{ $wma3Periode->wmaPeriodeResult->totalError }}</td>
-        <td class="bg-secondary">{{ $wma3Periode->wmaPeriodeResult->totalSquareError }}</td>
-        <td class="bg-secondary">{{ $wma3Periode->wmaPeriodeResult->totalPercentError }}</td>
+        <th class="table-primary">JUMLAH</th>
+        <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalError }}</td>
+        <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalSquareError }}</td>
+        <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalPercentError }}</td>
       </tr>
       <tr>
-        <td class="text-center">{{ count($wma3Periode->wmaPeriodeCalc)+2 }}</td>
+        <td class="text-center">#</td>
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
-        <td class="bg-warning">{{ $wma3Periode->wmaPeriodeResult->MAD }}</td>
-        <td class="bg-warning">{{ $wma3Periode->wmaPeriodeResult->MSE }}</td>
-        <td class="bg-warning">{{ $wma3Periode->wmaPeriodeResult->MAPE }}</td>
-      </tr>
-      <tr>
-        <td class="text-center">{{ count($wma3Periode->wmaPeriodeCalc)+3 }}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <th class="bg-warning">MAD</th>
-        <th class="bg-warning">MSE</th>
-        <th class="bg-warning">MAPE</th>
+        <th class="bg-warning text-white">MAPE</th>
+        <td class="bg-warning text-white">=</td>
+        <td class="bg-warning text-white">{{ $wma3Periode->wmaPeriodeResult->MAPE }}</td>
+        <td class="bg-warning text-white">
+          <i class="fa fa-info-circle" data-toggle="tooltip" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eligendi molestiae laudantium nobis, similique repudiandae eum fuga voluptates sint ipsam!"></i>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -154,7 +138,7 @@
 <div class="card">
   <div class="card-body">
   <h5 class="text-center text-primary mb-3">RAMALAN 4 PERIODE</h5>
-  <table class="table table-hover table-sm">
+  <table class="table table-hover table-sm {{ $periodeTerendah == 4 ? 'table-info rounded' : null }}">
     <thead>
       <tr>
         <th class="text-center">No.</th>
@@ -185,30 +169,22 @@
         <td>NEXT MONTH</td>
         <td>?</td>
         <td>{{ $wma4Periode->wmaPeriodeResult->nextFt }}</td>
-        <th class="bg-secondary">JUMLAH</th>
-        <td class="bg-secondary">{{ $wma4Periode->wmaPeriodeResult->totalError }}</td>
-        <td class="bg-secondary">{{ $wma4Periode->wmaPeriodeResult->totalSquareError }}</td>
-        <td class="bg-secondary">{{ $wma4Periode->wmaPeriodeResult->totalPercentError }}</td>
+        <th class="table-primary">JUMLAH</th>
+        <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalError }}</td>
+        <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalSquareError }}</td>
+        <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalPercentError }}</td>
       </tr>
       <tr>
-        <td class="text-center">{{ count($wma4Periode->wmaPeriodeCalc)+2 }}</td>
+        <td class="text-center">#</td>
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
-        <td class="bg-warning">{{ $wma4Periode->wmaPeriodeResult->MAD }}</td>
-        <td class="bg-warning">{{ $wma4Periode->wmaPeriodeResult->MSE }}</td>
-        <td class="bg-warning">{{ $wma4Periode->wmaPeriodeResult->MAPE }}</td>
-      </tr>
-      <tr>
-        <td class="text-center">{{ count($wma4Periode->wmaPeriodeCalc)+3 }}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <th class="bg-warning">MAD</th>
-        <th class="bg-warning">MSE</th>
-        <th class="bg-warning">MAPE</th>
+        <th class="bg-warning text-white">MAPE</th>
+        <td class="bg-warning text-white">=</td>
+        <td class="bg-warning text-white">{{ $wma4Periode->wmaPeriodeResult->MAPE }}</td>
+        <td class="bg-warning text-white">
+          <i class="fa fa-info-circle" data-toggle="tooltip" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eligendi molestiae laudantium nobis, similique repudiandae eum fuga voluptates sint ipsam!"></i>
+        </td>
       </tr>
     </tbody>
   </table>
