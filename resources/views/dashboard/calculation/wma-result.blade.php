@@ -71,7 +71,7 @@
         <td class="bg-warning text-white">=</td>
         <td class="bg-warning text-white">{{ $wma2Periode->wmaPeriodeResult->MAPE }}</td>
         <td class="bg-warning text-white">
-          <i class="fa fa-info-circle" data-toggle="tooltip" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eligendi molestiae laudantium nobis, similique repudiandae eum fuga voluptates sint ipsam!"></i>
+          <i class="fa fa-info-circle" data-toggle="tooltip" title="MAPE atau sering disebut rata-rata kesalahan absolut pada dasarnya menghitung kesalahan dalam bentuk persentase kesalahan hasil prediksi terhadap permintaan aktual selama rentang waktu tertentu yang dimana persentasi ini bisa saja tinggi ataupun rendah"></i>
         </td>
       </tr>
     </tbody>
@@ -127,7 +127,7 @@
         <td class="bg-warning text-white">=</td>
         <td class="bg-warning text-white">{{ $wma3Periode->wmaPeriodeResult->MAPE }}</td>
         <td class="bg-warning text-white">
-          <i class="fa fa-info-circle" data-toggle="tooltip" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eligendi molestiae laudantium nobis, similique repudiandae eum fuga voluptates sint ipsam!"></i>
+          <i class="fa fa-info-circle" data-toggle="tooltip" title="MAPE atau sering disebut rata-rata kesalahan absolut pada dasarnya menghitung kesalahan dalam bentuk persentase kesalahan hasil prediksi terhadap permintaan aktual selama rentang waktu tertentu yang dimana persentasi ini bisa saja tinggi ataupun rendah"></i>
         </td>
       </tr>
     </tbody>
@@ -183,7 +183,7 @@
         <td class="bg-warning text-white">=</td>
         <td class="bg-warning text-white">{{ $wma4Periode->wmaPeriodeResult->MAPE }}</td>
         <td class="bg-warning text-white">
-          <i class="fa fa-info-circle" data-toggle="tooltip" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eligendi molestiae laudantium nobis, similique repudiandae eum fuga voluptates sint ipsam!"></i>
+          <i class="fa fa-info-circle" data-toggle="tooltip" title="MAPE atau sering disebut rata-rata kesalahan absolut pada dasarnya menghitung kesalahan dalam bentuk persentase kesalahan hasil prediksi terhadap permintaan aktual selama rentang waktu tertentu yang dimana persentasi ini bisa saja tinggi ataupun rendah"></i>
         </td>
       </tr>
     </tbody>
@@ -194,6 +194,19 @@
   <div class="card-body px-5">
     <h6 class="text-center">Berdasarkan perhitungan dari ketiga tabel periode tersebut, peramalan yang dianjurkan untuk digunakan adalah </h6>
     <h5 class="bg-primary text-center text-white font-bold py-1">{{ $recomendation }}</h5>
+    <p>MAPE atau sering disebut rata-rata kesalahan absolut pada dasarnya menghitung kesalahan dalam bentuk persentase kesalahan hasil prediksi terhadap permintaan aktual selama rentang waktu tertentu yang dimana persentasi ini bisa saja tinggi ataupun rendah</p>
+    <p>Secara matematis MAPE dinyatakan sebagai berikut: <br>
+			MAPE = |(At - Ft)/At| x 100% <br>
+	    Dan untuk rata-rata MAPE dapat dirumuskan sebagai berikut:
+    </p>
+    <img src="{{ asset('assets/rumus.jpeg') }}" alt="Rumus">
+    <p>
+      Keterangan: <br>
+      MAPE = Kesalahan persentase kesalahan absolut <br>
+      At = Permintaan aktual pada periode -t <br>
+      Ft = Peramalan permintaan pada periode -t <br>
+      n = Jumlah periode peramalan yang terlibat
+    </p>
   </div>
 </div>
 <div class="card">
