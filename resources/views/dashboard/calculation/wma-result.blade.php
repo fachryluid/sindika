@@ -33,10 +33,10 @@
         <th>Bulan/Tahun</th>
         <th>Penjualan Aktual</th>
         <th>Ramalan 2 Periode</th>
-        <th>Error</th>
+        {{-- <th>Error</th>
         <th>[Error]</th>
         <th>Error^2</th>
-        <th>% Error</th>
+        <th>% Error</th> --}}
       </tr>
     </thead>
     <tbody>
@@ -46,10 +46,10 @@
         <td>{{ $wmaPeriodeCalc->date }}</td>
         <td>{{ $wmaPeriodeCalc->quantitySold }}</td>
         <td>{{ $wmaPeriodeCalc->ft }}</td>
-        <td>{{ $wmaPeriodeCalc->error }}</td>
+        {{-- <td>{{ $wmaPeriodeCalc->error }}</td>
         <td>{{ $wmaPeriodeCalc->absError }}</td>
         <td>{{ $wmaPeriodeCalc->squareError }}</td>
-        <td>{{ $wmaPeriodeCalc->percentError }}</td>
+        <td>{{ $wmaPeriodeCalc->percentError }}</td> --}}
       </tr>
       @endforeach
       <tr>
@@ -57,17 +57,17 @@
         <td>NEXT MONTH</td>
         <td>?</td>
         <td>{{ $wma2Periode->wmaPeriodeResult->nextFt }}</td>
-        <th class="table-primary">JUMLAH</th>
+        {{-- <th class="table-primary">JUMLAH</th>
         <td class="table-primary">{{ $wma2Periode->wmaPeriodeResult->totalError }}</td>
         <td class="table-primary">{{ $wma2Periode->wmaPeriodeResult->totalSquareError }}</td>
-        <td class="table-primary">{{ $wma2Periode->wmaPeriodeResult->totalPercentError }}</td>
+        <td class="table-primary">{{ $wma2Periode->wmaPeriodeResult->totalPercentError }}</td> --}}
       </tr>
       <tr>
-        <td class="text-center">#</td>
+        {{-- <td class="text-center">#</td> --}}
+        {{-- <td></td>
         <td></td>
-        <td></td>
-        <td></td>
-        <th class="bg-warning text-white">MAPE</th>
+        <td></td> --}}
+        <th class="bg-warning text-white text-center">MAPE</th>
         <td class="bg-warning text-white">=</td>
         <td class="bg-warning text-white">{{ $wma2Periode->wmaPeriodeResult->MAPE }}</td>
         <td class="bg-warning text-white">
@@ -89,10 +89,10 @@
         <th>Bulan/Tahun</th>
         <th>Penjualan Aktual</th>
         <th>Ramalan 3 Periode</th>
-        <th>Error</th>
+        {{-- <th>Error</th>
         <th>[Error]</th>
         <th>Error^2</th>
-        <th>% Error</th>
+        <th>% Error</th> --}}
       </tr>
     </thead>
     <tbody>
@@ -102,10 +102,10 @@
         <td>{{ $wmaPeriodeCalc->date }}</td>
         <td>{{ $wmaPeriodeCalc->quantitySold }}</td>
         <td>{{ $wmaPeriodeCalc->ft }}</td>
-        <td>{{ $wmaPeriodeCalc->error }}</td>
+        {{-- <td>{{ $wmaPeriodeCalc->error }}</td>
         <td>{{ $wmaPeriodeCalc->absError }}</td>
         <td>{{ $wmaPeriodeCalc->squareError }}</td>
-        <td>{{ $wmaPeriodeCalc->percentError }}</td>
+        <td>{{ $wmaPeriodeCalc->percentError }}</td> --}}
       </tr>
       @endforeach
       <tr>
@@ -113,17 +113,17 @@
         <td>NEXT MONTH</td>
         <td>?</td>
         <td>{{ $wma3Periode->wmaPeriodeResult->nextFt }}</td>
-        <th class="table-primary">JUMLAH</th>
+        {{-- <th class="table-primary">JUMLAH</th>
         <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalError }}</td>
         <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalSquareError }}</td>
-        <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalPercentError }}</td>
+        <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalPercentError }}</td> --}}
       </tr>
       <tr>
-        <td class="text-center">#</td>
+        {{-- <td class="text-center">#</td>
         <td></td>
         <td></td>
-        <td></td>
-        <th class="bg-warning text-white">MAPE</th>
+        <td></td> --}}
+        <th class="bg-warning text-white text-center">MAPE</th>
         <td class="bg-warning text-white">=</td>
         <td class="bg-warning text-white">{{ $wma3Periode->wmaPeriodeResult->MAPE }}</td>
         <td class="bg-warning text-white">
@@ -145,10 +145,10 @@
         <th>Bulan/Tahun</th>
         <th>Penjualan Aktual</th>
         <th>Ramalan 4 Periode</th>
-        <th>Error</th>
+        {{-- <th>Error</th>
         <th>[Error]</th>
         <th>Error^2</th>
-        <th>% Error</th>
+        <th>% Error</th> --}}
       </tr>
     </thead>
     <tbody>
@@ -158,10 +158,10 @@
         <td>{{ $wmaPeriodeCalc->date }}</td>
         <td>{{ $wmaPeriodeCalc->quantitySold }}</td>
         <td>{{ $wmaPeriodeCalc->ft }}</td>
-        <td>{{ $wmaPeriodeCalc->error }}</td>
+        {{-- <td>{{ $wmaPeriodeCalc->error }}</td>
         <td>{{ $wmaPeriodeCalc->absError }}</td>
         <td>{{ $wmaPeriodeCalc->squareError }}</td>
-        <td>{{ $wmaPeriodeCalc->percentError }}</td>
+        <td>{{ $wmaPeriodeCalc->percentError }}</td> --}}
       </tr>
       @endforeach
       <tr>
@@ -169,17 +169,17 @@
         <td>NEXT MONTH</td>
         <td>?</td>
         <td>{{ $wma4Periode->wmaPeriodeResult->nextFt }}</td>
-        <th class="table-primary">JUMLAH</th>
+        {{-- <th class="table-primary">JUMLAH</th>
         <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalError }}</td>
         <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalSquareError }}</td>
-        <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalPercentError }}</td>
+        <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalPercentError }}</td> --}}
       </tr>
       <tr>
-        <td class="text-center">#</td>
+        {{-- <td class="text-center">#</td>
         <td></td>
         <td></td>
-        <td></td>
-        <th class="bg-warning text-white">MAPE</th>
+        <td></td> --}}
+        <th class="bg-warning text-white text-center">MAPE</th>
         <td class="bg-warning text-white">=</td>
         <td class="bg-warning text-white">{{ $wma4Periode->wmaPeriodeResult->MAPE }}</td>
         <td class="bg-warning text-white">
