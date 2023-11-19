@@ -36,7 +36,8 @@
         {{-- <th>Error</th>
         <th>[Error]</th>
         <th>Error^2</th>
-        <th>% Error</th> --}}
+        --}}
+        <th>% Error</th>
       </tr>
     </thead>
     <tbody>
@@ -49,7 +50,8 @@
         {{-- <td>{{ $wmaPeriodeCalc->error }}</td>
         <td>{{ $wmaPeriodeCalc->absError }}</td>
         <td>{{ $wmaPeriodeCalc->squareError }}</td>
-        <td>{{ $wmaPeriodeCalc->percentError }}</td> --}}
+        --}}
+        <td>{{ $wmaPeriodeCalc->percentError }}</td>
       </tr>
       @endforeach
       <tr>
@@ -60,7 +62,8 @@
         {{-- <th class="table-primary">JUMLAH</th>
         <td class="table-primary">{{ $wma2Periode->wmaPeriodeResult->totalError }}</td>
         <td class="table-primary">{{ $wma2Periode->wmaPeriodeResult->totalSquareError }}</td>
-        <td class="table-primary">{{ $wma2Periode->wmaPeriodeResult->totalPercentError }}</td> --}}
+        --}}
+        <td class="table-primary">{{ $wma2Periode->wmaPeriodeResult->totalPercentError }}</td>
       </tr>
       <tr>
         {{-- <td class="text-center">#</td> --}}
@@ -68,9 +71,11 @@
         <td></td>
         <td></td>
         <th class="bg-warning text-white text-center d-flex justify-content-center align-items-center">
-          <h6 class="mb-0 mr-3">MAPE = {{ $wma2Periode->wmaPeriodeResult->MAPE }}</h6>
-          <i class="fa fa-info-circle" data-toggle="tooltip" title="MAPE atau sering disebut rata-rata kesalahan absolut pada dasarnya menghitung kesalahan dalam bentuk persentase kesalahan hasil prediksi terhadap permintaan aktual selama rentang waktu tertentu yang dimana persentasi ini bisa saja tinggi ataupun rendah"></i>
+          <h6 class="mb-1 mr-3">MAPE = {{ $wma2Periode->wmaPeriodeResult->MAPE }}</h6>
         </th>
+        <td class="bg-warning text-white text-center">
+          <i class="fa fa-info-circle" data-toggle="tooltip" title="MAPE atau sering disebut rata-rata kesalahan absolut pada dasarnya menghitung kesalahan dalam bentuk persentase kesalahan hasil prediksi terhadap permintaan aktual selama rentang waktu tertentu yang dimana persentasi ini bisa saja tinggi ataupun rendah"></i>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -89,8 +94,8 @@
         <th>Ramalan 3 Periode</th>
         {{-- <th>Error</th>
         <th>[Error]</th>
-        <th>Error^2</th>
-        <th>% Error</th> --}}
+        <th>Error^2</th> --}}
+        <th>% Error</th>
       </tr>
     </thead>
     <tbody>
@@ -102,8 +107,8 @@
         <td>{{ $wmaPeriodeCalc->ft }}</td>
         {{-- <td>{{ $wmaPeriodeCalc->error }}</td>
         <td>{{ $wmaPeriodeCalc->absError }}</td>
-        <td>{{ $wmaPeriodeCalc->squareError }}</td>
-        <td>{{ $wmaPeriodeCalc->percentError }}</td> --}}
+        <td>{{ $wmaPeriodeCalc->squareError }}</td> --}}
+        <td>{{ $wmaPeriodeCalc->percentError }}</td>
       </tr>
       @endforeach
       <tr>
@@ -113,17 +118,19 @@
         <td>{{ $wma3Periode->wmaPeriodeResult->nextFt }}</td>
         {{-- <th class="table-primary">JUMLAH</th>
         <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalError }}</td>
-        <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalSquareError }}</td>
-        <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalPercentError }}</td> --}}
+        <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalSquareError }}</td> --}}
+        <td class="table-primary">{{ $wma3Periode->wmaPeriodeResult->totalPercentError }}</td>
       </tr>
       <tr>
         <td></td>
         <td></td>
         <td></td>
         <th class="bg-warning text-white text-center d-flex justify-content-center align-items-center">
-          <h6 class="mb-0 mr-3">MAPE = {{ $wma3Periode->wmaPeriodeResult->MAPE }}</h1>
-          <i class="fa fa-info-circle" data-toggle="tooltip" title="MAPE atau sering disebut rata-rata kesalahan absolut pada dasarnya menghitung kesalahan dalam bentuk persentase kesalahan hasil prediksi terhadap permintaan aktual selama rentang waktu tertentu yang dimana persentasi ini bisa saja tinggi ataupun rendah"></i>
+          <h6 class="mb-1 mr-3">MAPE = {{ $wma3Periode->wmaPeriodeResult->MAPE }}</h1>
         </th>
+        <td class="bg-warning text-white text-center">
+          <i class="fa fa-info-circle" data-toggle="tooltip" title="MAPE atau sering disebut rata-rata kesalahan absolut pada dasarnya menghitung kesalahan dalam bentuk persentase kesalahan hasil prediksi terhadap permintaan aktual selama rentang waktu tertentu yang dimana persentasi ini bisa saja tinggi ataupun rendah"></i>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -142,8 +149,8 @@
         <th>Ramalan 4 Periode</th>
         {{-- <th>Error</th>
         <th>[Error]</th>
-        <th>Error^2</th>
-        <th>% Error</th> --}}
+        <th>Error^2</th> --}}
+        <th>% Error</th>
       </tr>
     </thead>
     <tbody>
@@ -155,8 +162,8 @@
         <td>{{ $wmaPeriodeCalc->ft }}</td>
         {{-- <td>{{ $wmaPeriodeCalc->error }}</td>
         <td>{{ $wmaPeriodeCalc->absError }}</td>
-        <td>{{ $wmaPeriodeCalc->squareError }}</td>
-        <td>{{ $wmaPeriodeCalc->percentError }}</td> --}}
+        <td>{{ $wmaPeriodeCalc->squareError }}</td> --}}
+        <td>{{ $wmaPeriodeCalc->percentError }}</td>
       </tr>
       @endforeach
       <tr>
@@ -166,17 +173,19 @@
         <td>{{ $wma4Periode->wmaPeriodeResult->nextFt }}</td>
         {{-- <th class="table-primary">JUMLAH</th>
         <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalError }}</td>
-        <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalSquareError }}</td>
-        <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalPercentError }}</td> --}}
+        <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalSquareError }}</td> --}}
+        <td class="table-primary">{{ $wma4Periode->wmaPeriodeResult->totalPercentError }}</td>
       </tr>
       <tr>
         <td></td>
         <td></td>
         <td></td>
         <th class="bg-warning text-white text-center d-flex justify-content-center align-items-center">
-          <h6 class="mb-0 mr-3">MAPE = {{ $wma4Periode->wmaPeriodeResult->MAPE }}</h6>
-          <i class="fa fa-info-circle" data-toggle="tooltip" title="MAPE atau sering disebut rata-rata kesalahan absolut pada dasarnya menghitung kesalahan dalam bentuk persentase kesalahan hasil prediksi terhadap permintaan aktual selama rentang waktu tertentu yang dimana persentasi ini bisa saja tinggi ataupun rendah"></i>
+          <h6 class="mb-1 mr-3">MAPE = {{ $wma4Periode->wmaPeriodeResult->MAPE }}</h6>
         </th>
+        <td class="bg-warning text-white text-center">
+          <i class="fa fa-info-circle" data-toggle="tooltip" title="MAPE atau sering disebut rata-rata kesalahan absolut pada dasarnya menghitung kesalahan dalam bentuk persentase kesalahan hasil prediksi terhadap permintaan aktual selama rentang waktu tertentu yang dimana persentasi ini bisa saja tinggi ataupun rendah"></i>
+        </td>
       </tr>
     </tbody>
   </table>
