@@ -123,7 +123,7 @@
 
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; {{ config('app.name') }} {{ date('Y') }}
+          Copyright &copy; Mahasiswa Informatika 2019
         </div>
         <div class="footer-right">
           @yield('footer')
